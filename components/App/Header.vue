@@ -104,7 +104,9 @@
             </a>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li>
+            <NuxtLink to="/">Logout</NuxtLink>
+          </li>
         </ul>
       </div>
     </div>

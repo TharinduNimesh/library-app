@@ -13,9 +13,7 @@
       <div
         class="w-full h-full overflow-y-scroll flex flex-col justify-between"
       >
-        <div class="rounded-lg bg-slate-50 p-5 shadow-md">
         <slot />
-        </div>
         <AppFooter />
       </div>
     </div>
@@ -26,8 +24,13 @@
 export default {
   data() {
     return {
-      navbar: false,
+      navbar: true,
+      isMobile: true,
     };
+  },
+  beforeMount() {
+    this.isMobile = window.innerWidth < 720;
+    this.navbar = this.isMobile ? false : true;
   },
   methods: {
     toggleNavbar() {

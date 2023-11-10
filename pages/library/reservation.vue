@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-    title: 'Dashboard | Sri Dharmaloka College',
+    title: 'Reservation | Sri Dharmaloka College',
 });
 </script>
 
