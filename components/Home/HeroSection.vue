@@ -70,7 +70,7 @@
         <div class="mt-12 flex justify-center">
           <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
             <img
-              src="/images/clients/Untitled design (3).png"
+              src="/images/clients/eversoft-it-solutions.png"
               class="h-14 w-auto mx-auto"
               loading="lazy"
               alt="client logo"
@@ -78,7 +78,7 @@
           </div>
           <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
             <img
-              src="/images/clients/Untitled design (5).png"
+              src="/images/clients/sri-dharmaloka.college.png"
               class="h-14 w-auto mx-auto"
               loading="lazy"
               alt="client logo"

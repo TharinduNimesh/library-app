@@ -5,6 +5,11 @@ const routes = [
     path: "/library/dashboard",
   },
   {
+    name: "Users",
+    icon: "material-symbols:person-pin",
+    path: "/library/users",
+  },
+  {
     name: "Holdings",
     icon: "bx:bxs-book-bookmark",
     path: "/library/holdings",
