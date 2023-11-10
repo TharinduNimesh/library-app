@@ -18,13 +18,12 @@
         <h2
           class="my-8 text-2xl font-bold text-gray-700 dark:text-white md:text-4xl"
         >
-          A technology-first approach to payments and finance
+          Tech-driven library management for efficiency.
         </h2>
         <p class="text-gray-600 dark:text-gray-300">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ad
-          ipsum pariatur autem, fugit laborum in atque amet obcaecati? Nisi
-          minima aspernatur, quidem nulla cupiditate nam consequatur eligendi
-          magni adipisci.
+          Our library embraces technology, employing digital tools to enhance
+          operations and provide an innovative, efficient, and user-friendly
+          experience for patrons and librarians alike.
         </p>
       </div>
       <div
@@ -46,11 +45,11 @@
               <h5
                 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
               >
-                First feature
+                Cataloging and Inventory Management
               </h5>
               <p class="text-gray-600 dark:text-gray-300">
-                Neque Dolor, fugiat non cum doloribus aperiam voluptates
-                nostrum.
+                Organize and catalog library materials with unique identifiers
+                and relevant details.
               </p>
             </div>
             <a
@@ -89,11 +88,11 @@
               <h5
                 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
               >
-                Second feature
+                Member Management and Circulation
               </h5>
               <p class="text-gray-600 dark:text-gray-300">
-                Neque Dolor, fugiat non cum doloribus aperiam voluptates
-                nostrum.
+                Manage patron information, handle check-in/check-out, and track
+                due dates.
               </p>
             </div>
             <a
@@ -132,11 +131,12 @@
               <h5
                 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
               >
-                Third feature
+                Search and Discovery
               </h5>
               <p class="text-gray-600 dark:text-gray-300">
-                Neque Dolor, fugiat non cum doloribus aperiam voluptates
-                nostrum.
+                Enable effortless search and locate functionality for library
+                materials through intuitive and user-friendly interfaces for
+                users.
               </p>
             </div>
             <a
@@ -160,11 +160,9 @@
           </div>
         </div>
         <div
-          class="group relative bg-gray-50 dark:bg-gray-900 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10"
+          class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10"
         >
-          <div
-            class="relative space-y-8 py-12 p-8 transition duration-300 group-hover:bg-white dark:group-hover:bg-gray-800"
-          >
+          <div class="relative space-y-8 py-12 p-8">
             <img
               src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png"
               class="w-12"
@@ -177,11 +175,11 @@
               <h5
                 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
               >
-                More features
+                Reporting and Analytics
               </h5>
               <p class="text-gray-600 dark:text-gray-300">
-                Neque Dolor, fugiat non cum doloribus aperiam voluptates
-                nostrum.
+                Generate insights on library performance, usage patterns, and
+                key metrics for informed decision-making.
               </p>
             </div>
             <a

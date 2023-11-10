@@ -27,7 +27,7 @@
                 <div class="h-6 w-2 bg-primary"></div>
               </div>
               <span class="text-2xl font-bold text-gray-900 dark:text-white"
-                >Astrolus</span
+                >SDC <a class="text-primary">X</a> Eversoft</span
               >
             </a>
 
@@ -87,14 +87,6 @@
                     class="block md:px-4 transition hover:text-primary"
                   >
                     <span>Testimonials</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#blog"
-                    class="block md:px-4 transition hover:text-primary"
-                  >
-                    <span>Blog</span>
                   </a>
                 </li>
               </ul>

@@ -12,7 +12,6 @@ useHead({
       <HomeStats />
       <HomeTestimonials />
       <HomeCallToAction />
-      <HomeBlog />
     </main>
   </NuxtLayout>
 </template>

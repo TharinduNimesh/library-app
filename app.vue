@@ -23,7 +23,7 @@
 
 /* Track for webkit browsers */
 ::-webkit-scrollbar-track {
-  background: #1d232a; /* Set the background color of the track */
+  background: transparent; /* Set the background color of the track */
 }
 
 /* Handle for webkit browsers */

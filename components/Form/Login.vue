@@ -1,11 +1,11 @@
 <template>
   <form class="w-full">
     <div class="mb-6">
-      <Input type="email" placeholder="Email Address" v-model="form.email" />
+      <PrimaryInput type="email" placeholder="Email Address" v-model="form.email" />
     </div>
 
     <div class="mb-6">
-      <Input type="password" placeholder="Password" v-model="form.password" />
+      <PrimaryInput type="password" placeholder="Password" v-model="form.password" />
     </div>
 
     <div class="mb-8">

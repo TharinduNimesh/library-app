@@ -21,10 +21,9 @@
             <span class="text-primary dark:text-white">reimagination.</span>
           </h1>
           <p class="mt-8 text-gray-700 dark:text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-            incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-            doloribus asperiores quaerat aperiam. Quidem harum omnis beatae
-            ipsum soluta!
+            Inspired by the boundless realms of literature, our library fosters
+            a community where knowledge blossoms, igniting imaginations and
+            shaping enlightened, empowered individuals.
           </p>
           <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
             <NuxtLink
@@ -50,89 +49,42 @@
           >
             <div class="text-left">
               <h6 class="text-lg font-semibold text-gray-700 dark:text-white">
-                The lowest price
+                Powerful
               </h6>
-              <p class="mt-2 text-gray-500">Some text here</p>
+              <p class="mt-2 text-gray-500">4x Powerful</p>
             </div>
             <div class="text-left">
               <h6 class="text-lg font-semibold text-gray-700 dark:text-white">
-                The fastest on the market
+                Fastest
               </h6>
-              <p class="mt-2 text-gray-500">Some text here</p>
+              <p class="mt-2 text-gray-500">5x fastest</p>
             </div>
             <div class="text-left">
               <h6 class="text-lg font-semibold text-gray-700 dark:text-white">
-                The most loved
+                Accuracy
               </h6>
-              <p class="mt-2 text-gray-500">Some text here</p>
+              <p class="mt-2 text-gray-500">3x Accuracy</p>
             </div>
           </div>
         </div>
-        <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
+        <div class="mt-12 flex justify-center">
           <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
             <img
-              src="/images/clients/microsoft.svg"
-              class="h-12 w-auto mx-auto"
+              src="/images/clients/Untitled design (3).png"
+              class="h-14 w-auto mx-auto"
               loading="lazy"
               alt="client logo"
-              width=""
-              height=""
-            />
-          </div>
-          <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-            <img
-              src="/images/clients/airbnb.svg"
-              class="h-12 w-auto mx-auto"
-              loading="lazy"
-              alt="client logo"
-              width=""
-              height=""
-            />
-          </div>
-          <div
-            class="p-4 flex grayscale transition duration-200 hover:grayscale-0"
-          >
-            <img
-              src="/images/clients/google.svg"
-              class="h-9 w-auto m-auto"
-              loading="lazy"
-              alt="client logo"
-              width=""
-              height=""
             />
           </div>
           <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
             <img
-              src="/images/clients/ge.svg"
-              class="h-12 w-auto mx-auto"
+              src="/images/clients/Untitled design (5).png"
+              class="h-14 w-auto mx-auto"
               loading="lazy"
               alt="client logo"
-              width=""
-              height=""
             />
           </div>
-          <div
-            class="p-4 flex grayscale transition duration-200 hover:grayscale-0"
-          >
-            <img
-              src="/images/clients/netflix.svg"
-              class="h-8 w-auto m-auto"
-              loading="lazy"
-              alt="client logo"
-              width=""
-              height=""
-            />
-          </div>
-          <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-            <img
-              src="/images/clients/google-cloud.svg"
-              class="h-12 w-auto mx-auto"
-              loading="lazy"
-              alt="client logo"
-              width=""
-              height=""
-            />
-          </div>
+          <!-- Add more grid items as needed -->
         </div>
       </div>
     </HomeContainer>

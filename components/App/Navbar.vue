@@ -12,7 +12,7 @@
     </div>
 
     <div class="flex flex-col gap-2 mt-3 px-2 h-full overflow-y-scroll">
-      <AppNavItem 
+      <AppNavItem
         v-for="item in items"
         :key="item.name"
         :name="item.name"
@@ -24,19 +24,20 @@
 </template>
 
 <script>
-import items from '~/assets/data/library-routes.js';
+import items from "~/assets/data/library-routes.js";
 
 export default {
   data() {
     return {
-      items
-    }
+      items,
+    };
   },
   props: ["isVisible"],
 };
 </script>
 
 <style scoped>
+/* Common styles for all screen sizes */
 .nav {
   width: 320px;
 }
@@ -49,6 +50,7 @@ export default {
   margin-left: 0;
 }
 
+/* Responsive styles for screens larger than 1024px */
 @media (min-width: 1024px) {
   .nav {
     margin-left: 0;
@@ -59,6 +61,22 @@ export default {
 
   .nav-show {
     margin-left: 0;
+  }
+}
+
+/* Responsive styles for screens smaller than 640px (mobile) */
+@media (max-width: 639px) {
+  .nav {
+    width: 100%; /* Full width on smaller screens */
+    margin-left: 0 !important; 
+  }
+
+  .nav-hide {
+    margin-left: 0 !important; 
+  }
+
+  .nav-show {
+    margin-left: 0 !important; 
   }
 }
 </style>
