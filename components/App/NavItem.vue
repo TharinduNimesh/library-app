@@ -1,10 +1,10 @@
 <template>
   <NuxtLink
     :to="path"
-    class="nav-item w-full h-14 flex items-center justify-between rounded shadow-sm px-3 duration-300"
+    class="nav-item w-full h-14 flex items-center justify-between rounded-md px-3 duration-300 transition-colors"
     :class="{
-      active: $route.path === path,
-      inactive: $route.path !== path,
+      'bg-blue-500 text-white': $route.path === path,
+      'bg-gray-200 text-gray-800 hover:bg-blue-300 hover:text-blue-800': $route.path !== path,
     }"
   >
     <Icon :name="icon" class="text-3xl" />
