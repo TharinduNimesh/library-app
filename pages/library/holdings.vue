@@ -27,7 +27,6 @@ useHead({
             class="input input-accent bg-accent-content w-full max-w-xs lg:w-auto"
           />
         </div>
-
         <!-- Buttons End -->
 
         <!-- Table Start -->
@@ -49,7 +48,7 @@ useHead({
                 <td class="px-6 py-4 text-right flex justify-end space-x-1">
                   <!-- Assuming PrimaryIconButton is properly defined -->
                   <PrimaryIconButton
-                    icon="material-symbols-light:info-outline"
+                    icon="material-symbols:info-outline"
                   />
                   <PrimaryIconButton
                     icon="material-symbols:delete-outline"
@@ -64,7 +63,7 @@ useHead({
                 <td class="px-6 py-4 text-right flex justify-end space-x-1">
                   <!-- Assuming PrimaryIconButton is properly defined -->
                   <PrimaryIconButton
-                    icon="material-symbols-light:info-outline"
+                    icon="material-symbols:info-outline"
                   />
                   <PrimaryIconButton
                     icon="material-symbols:delete-outline"
@@ -97,7 +96,6 @@ useHead({
             class="input input-accent bg-accent-content w-full max-w-xs lg:w-auto"
           />
         </div>
-
         <!-- Buttons End -->
 
         <!-- Table Start -->
@@ -119,7 +117,7 @@ useHead({
                 <td class="px-6 py-4 text-right flex justify-end space-x-1">
                   <!-- Assuming PrimaryIconButton is properly defined -->
                   <PrimaryIconButton
-                    icon="material-symbols-light:info-outline"
+                    icon="material-symbols:info-outline"
                   />
                   <PrimaryIconButton
                     icon="material-symbols:delete-outline"
@@ -134,7 +132,7 @@ useHead({
                 <td class="px-6 py-4 text-right flex justify-end space-x-1">
                   <!-- Assuming PrimaryIconButton is properly defined -->
                   <PrimaryIconButton
-                    icon="material-symbols-light:info-outline"
+                    icon="material-symbols:info-outline"
                   />
                   <PrimaryIconButton
                     icon="material-symbols:delete-outline"
