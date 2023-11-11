@@ -7,7 +7,7 @@ useHead({
 <template>
   <NuxtLayout name="app">
     <div class="space-y-5">
-      <div class="rounded-lg shadow-sm bg-slate-50 ">
+      <div class="rounded-lg shadow-sm bg-slate-50">
         <!-- Buttons Start -->
         <div
           class="p-5 space-y-2 lg:space-y-0 lg:space-x-2 flex flex-col lg:flex-row items-center"
