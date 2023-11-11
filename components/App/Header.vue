@@ -2,7 +2,7 @@
   <div class="navbar bg-slate-50 rounded-lg shadow-md mb-3">
     <div class="flex-1">
       <label
-        class="btn btn-circle swap swap-rotate bg-slate-200 border-none hover:bg-slate-100"
+        class="duration-300 btn-circle swap swap-rotate bg-slate-200 border-none hover:bg-slate-100"
       >
         <!-- this hidden checkbox controls the state -->
         <input type="checkbox" @change="toggleNavbar" />
@@ -66,7 +66,10 @@
         </label>
       </div>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle">
+        <label
+          tabindex="0"
+          class="p-3 cursor-pointer rounded-full hover:bg-slate-200 flex justify-center items-center"
+        >
           <div class="indicator">
             <Icon name="typcn:bell" class="w-6 h-6" />
             <span class="badge badge-sm indicator-item">8</span>
@@ -88,7 +91,7 @@
         </div>
       </div>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+        <label tabindex="0" class="w-10 h-10 cursor-pointer btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <img src="/images/app/user.avif" />
           </div>

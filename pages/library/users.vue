@@ -1,42 +1,46 @@
 <template>
   <NuxtLayout name="app">
-    <div class="rounded-lg bg-slate-50 shadow-md">
-      <div class="p-5">
-        <button class="btn" @click="show">Show Modal</button>
+    <div class="rounded-lg bg-slate-50 shadow-md py-5">
+      <div class="flex justify-between items-center">
+        <h2 class="text-gray-700 text-4xl font-bold uppercase p-5">
+          Manage Users
+        </h2>
+        <div class="flex justify-end p-5 gap-2">
+          <button
+            class="btn bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+          >
+            <Icon class="text-lg" name="mingcute:upload-2-fill" />
+            <span>Export</span>
+          </button>
+          <button class="btn text-slate-200" @click="show">
+            <Icon class="text-lg" name="mingcute:add-circle-fill" />
+            <span>Add New Record</span>
+          </button>
+        </div>
       </div>
-      <div class="overflow-x-auto shadow-md rounded-b-lg">
-        <table class="w-full text-md text-left text-gray-500">
-          <thead class="text-sm text-gray-700 uppercase bg-gray-50">
-            <tr class="bg-white border-b hover:bg-gray-50">
-              <th scope="col" class="px-6 py-3">ID</th>
-              <th scope="col" class="px-6 py-3">Name</th>
-              <th scope="col" class="px-6 py-3">Book ID</th>
-              <th scope="col" class="px-6 py-3">Role</th>
-              <th scope="col" class="px-6 py-3">Action</th>
-            </tr>
-          </thead>
+      <div class="overflow-x-auto rounded-b-lg px-5">
+        <table class="w-full text-md text-left text-gray-500 shadow-lg">
+          <AppTableHead :columns="columns" />
           <tbody>
             <tr class="bg-white border-b hover:bg-gray-50">
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4 text-right">
-                <!-- Assuming PrimaryIconButton is properly defined -->
+              <td>doe</td>
+              <td>doe</td>
+              <td>doe</td>
+              <td>doe</td>
+              <td>
                 <PrimaryIconButton
-                  icon="material-symbols-light:edit-square-outline"
+                  icon="material-symbols:edit-square-outline-rounded"
                 />
               </td>
             </tr>
             <tr class="bg-white border-b hover:bg-gray-50">
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4">doe</td>
-              <td class="px-6 py-4 text-right">
-                <!-- Assuming PrimaryIconButton is properly defined -->
+              <td>doe</td>
+              <td>doe</td>
+              <td>doe</td>
+              <td>doe</td>
+              <td>
                 <PrimaryIconButton
-                  icon="material-symbols-light:edit-square-outline"
+                  icon="material-symbols:edit-square-outline-rounded"
                 />
               </td>
             </tr>
@@ -44,9 +48,13 @@
         </table>
       </div>
     </div>
+
+    <template #RightModal>
+      <FormAddUser />
+    </template>
   </NuxtLayout>
 </template>
-  
+
 <script setup>
 useHead({
   title: "Users | Sri Dharmaloka College",
@@ -59,9 +67,6 @@ function show() {
   isModalVisible.value = true;
   isContainerVisible.value = true;
 }
+
+const columns = ["Id", "Name", "Mobile", "Joined At", "Action"];
 </script>
-  
-  <style>
-/* Add your styles here if needed */
-</style>
-  

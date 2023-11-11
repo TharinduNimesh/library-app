@@ -21,7 +21,9 @@
         <AppFooter />
       </div>
     </div>
-    <AppRightModal />
+    <AppRightModal>
+      <slot name="RightModal" />
+    </AppRightModal>
   </div>
 </template>
 
