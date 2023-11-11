@@ -1,13 +1,92 @@
 <script setup>
 useHead({
-    title: 'Overdue | Sri Dharmaloka College',
+  title: "Overdue | Sri Dharmaloka College",
 });
 </script>
 
 <template>
-    <NuxtLayout name="app">
-        <div class="rounded-lg bg-slate-50 p-5 shadow-md">
-            <!-- Code Here -->
+  <NuxtLayout name="app">
+    <div class="space-y-5">
+      <div class="rounded-lg shadow-sm bg-slate-50">
+        <!-- Buttons Start -->
+        <div
+          class="p-5 space-y-2 lg:space-y-0 lg:space-x-2 flex flex-col lg:flex-row items-center"
+        >
+          <select
+            class="select select-accent bg-accent-content w-full max-w-xs lg:w-auto"
+          >
+            <option disabled selected>Select Category</option>
+            <option>Article</option>
+            <option>News Paper</option>
+            <option>Books</option>
+          </select>
+
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-accent bg-accent-content w-full max-w-xs lg:w-auto"
+          />
         </div>
-    </NuxtLayout>
+        <!-- Buttons End -->
+
+        <!-- Table Start -->
+        <div class="overflow-x-auto rounded-b-lg">
+          <table class="w-full text-md text-left text-gray-500">
+            <thead class="text-sm text-gray-700 uppercase bg-gray-50">
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <th scope="col" class="px-6 py-3">Book id</th>
+                <th scope="col" class="px-6 py-3">title</th>
+                <th scope="col" class="px-6 py-3">reserver</th>
+                <th scope="col" class="px-6 py-3">due date</th>
+                <th scope="col" class="px-6 py-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4 text-right flex justify-end space-x-1">
+                  <!-- Assuming PrimaryIconButton is properly defined -->
+                  <PrimaryIconButton
+                    icon="material-symbols:check-circle-outline"
+                    colors="bg-green-700 text-white"
+                  />
+                  <PrimaryIconButton
+                    icon="material-symbols:info-outline"
+                  />
+                  <PrimaryIconButton
+                    icon="ic:baseline-block"
+                    colors="bg-red-700 text-white"
+                  />
+                </td>
+              </tr>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4">doe</td>
+                <td class="px-6 py-4 text-right flex justify-end space-x-1">
+                  <!-- Assuming PrimaryIconButton is properly defined -->
+                  <PrimaryIconButton
+                    icon="material-symbols:check-circle-outline"
+                    colors="bg-green-700 text-white"
+                  />
+                  <PrimaryIconButton
+                    icon="material-symbols:info-outline"
+                  />
+                  <PrimaryIconButton
+                    icon="ic:baseline-block"
+                    colors="bg-red-700 text-white"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Table End -->
+      </div>
+    </div>
+  </NuxtLayout>
 </template>
