@@ -1,0 +1,2 @@
+export const useRightModalVisible = () => useState<Boolean>('isRightModalVisible', () => false);
+export const useRightModalContainerVisible = () => useState<Boolean>('isRightModalContainerVisible', () => false);

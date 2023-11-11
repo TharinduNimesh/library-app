@@ -2,7 +2,7 @@
   <NuxtLayout name="app">
     <div class="rounded-lg bg-slate-50 shadow-md">
       <div class="p-5">
-        <!-- Modal -->
+        <button class="btn" @click="show">Show Modal</button>
       </div>
       <div class="overflow-x-auto shadow-md rounded-b-lg">
         <table class="w-full text-md text-left text-gray-500">
@@ -47,10 +47,18 @@
   </NuxtLayout>
 </template>
   
-  <script setup>
+<script setup>
 useHead({
   title: "Users | Sri Dharmaloka College",
 });
+
+const isModalVisible = useRightModalVisible();
+const isContainerVisible = useRightModalContainerVisible();
+
+function show() {
+  isModalVisible.value = true;
+  isContainerVisible.value = true;
+}
 </script>
   
   <style>

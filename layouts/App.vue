@@ -21,6 +21,7 @@
         <AppFooter />
       </div>
     </div>
+    <AppRightModal />
   </div>
 </template>
 

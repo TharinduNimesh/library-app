@@ -28,7 +28,7 @@
 
 /* Handle for webkit browsers */
 ::-webkit-scrollbar-thumb {
-  background: #2d3748; /* Set the background color of the thumb */
+  background: transparent; /* Set the background color of the thumb */
   border-radius: 4px; /* Round the corners of the thumb */
 }
 
