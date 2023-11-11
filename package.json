@@ -20,6 +20,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "daisyui": "latest"
+    "daisyui": "latest",
+    "vuex": "^4.1.0"
   }
 }

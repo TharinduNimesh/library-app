@@ -40,6 +40,7 @@ export default {
 /* Common styles for all screen sizes */
 .nav {
   width: 320px;
+  transition: margin-left 0.3s ease; /* Added smooth transition */
 }
 
 .nav-hide {
@@ -50,33 +51,23 @@ export default {
   margin-left: 0;
 }
 
-/* Responsive styles for screens larger than 1024px */
-@media (min-width: 1024px) {
+/* Responsive styles using Tailwind CSS */
+/* Mobile styles */
+@include screens(md) {
   .nav {
-    margin-left: 0;
-  }
-  .nav-hide {
-    margin-left: -320px;
+    width: 100%;
   }
 
-  .nav-show {
-    margin-left: 0;
+  .nav-show,
+  .nav-hide {
+    margin-left: 0; /* Adjust as needed for your mobile design */
   }
 }
 
-/* Responsive styles for screens smaller than 640px (mobile) */
-@media (max-width: 639px) {
+/* Tablet and larger screens */
+@include screens(lg) {
   .nav {
-    width: 100%; /* Full width on smaller screens */
-    margin-left: 0 !important; 
-  }
-
-  .nav-hide {
-    margin-left: 0 !important; 
-  }
-
-  .nav-show {
-    margin-left: 0 !important; 
+    width: 320px; /* Adjust as needed for your tablet design */
   }
 }
 </style>
