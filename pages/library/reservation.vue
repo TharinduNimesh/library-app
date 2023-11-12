@@ -36,7 +36,7 @@ useHead({
                 <td class="px-6 py-4">doe</td>
                 <td class="px-6 py-4 text-right flex justifify-center space-x-1">
                     <PrimaryIconButton
-                    icon="material-symbols-light:info-outline"
+                    icon="material-symbols:info-outline"
                   />
                 </td>
               </tr>
@@ -47,7 +47,7 @@ useHead({
                 <td class="px-6 py-4">doe</td>
                 <td class="px-6 py-4 text-right flex justifify-center space-x-1">
                     <PrimaryIconButton
-                    icon="material-symbols-light:info-outline"
+                    icon="material-symbols:info-outline"
                   />
                 </td>
               </tr>
