@@ -1,9 +1,4 @@
-const grades = [
-  {
-    label: "select your grade",
-    value: 0,
-  },
-];
+const grades = [];
 for (let i = 1; i < 14; i++) {
   grades.push({
     label: `Grade - ${i}`,
@@ -12,10 +7,6 @@ for (let i = 1; i < 14; i++) {
 }
 
 const roles = [
-  {
-    label: "Select Staff Role",
-    value: 0,
-  },
   {
     label: "Administrative Staff",
     value: 1,
@@ -109,6 +100,7 @@ const elements = [
     },
     {
       type: "select",
+      placeholder: "Select The Grade",
       label: "Grade",
       icon: "majesticons:academic-cap-line",
       options: grades,
@@ -130,6 +122,7 @@ const elements = [
     {
       type: "select",
       label: "Grade",
+      placeholder: "Select The Grade",
       icon: "majesticons:academic-cap-line",
       options: grades,
     },
@@ -150,6 +143,7 @@ const elements = [
     {
       type: "select",
       label: "Sraff Role",
+      placeholder: "Select The Staff Position",
       icon: "material-symbols-light:card-travel-outline-sharp",
       options: roles,
     },

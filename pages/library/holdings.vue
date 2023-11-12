@@ -82,6 +82,9 @@
         </div>
       </div>
     </div>
+    <template #RightModal>
+      <div>c</div>
+    </template>
   </NuxtLayout>
 </template>
 
@@ -92,4 +95,12 @@ useHead({
 
 const availableHead = ["Title", "Copies", "Available", "action"];
 const removedHead = ["Book ID", "Title", "Removed AT", "More"];
+
+const isModalVisible = useRightModalVisible();
+const isContainerVisible = useRightModalContainerVisible();
+
+function show() {
+  isModalVisible.value = true;
+  isContainerVisible.value = true;
+}
 </script>

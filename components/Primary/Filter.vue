@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col sm:flex-row w-full">
     <!-- Filter Option Select -->
-    <div class="w-full sm:w-1/6 mb-2 sm:mb-0">
+    <div class="w-full flex sm:w-1/6 mb-2 sm:mb-0">
       <select
-        class="w-full uppercase rounded-md bg-transparent outline-none border border-gray-400 focus:border-gray-700 text-gray-700 px-4 py-3 duration-300"
+        class="w-full uppercase rounded sm:rounded-r-none bg-transparent outline-none border border-gray-400 focus:border-gray-700 text-gray-700 px-4 py-3 duration-300"
         v-model="filterOption"
       >
         <option value="0">Filter Option</option>
@@ -20,7 +20,7 @@
     <!-- Input -->
     <input
       type="text"
-      class="w-full sm:w-3/6 uppercase rounded-md bg-transparent outline-none border border-gray-400 focus:border-gray-700 text-gray-700 px-4 py-2 mr-3 duration-300 mb-2 sm:mb-0"
+      class="w-full sm:w-3/6 uppercase rounded sm:rounded-l-none bg-transparent outline-none border border-gray-400 focus:border-gray-700 text-gray-700 px-4 py-2 mr-3 duration-300 mb-2 sm:mb-0"
       :placeholder="placeholder"
       v-model="inputValue"
     />

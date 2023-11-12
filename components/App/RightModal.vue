@@ -18,7 +18,7 @@
     >
       <div class="w-full h-full">
         <div class="w-full p-5 flex justify-between items-center text-gray-700">
-          <h3 class="text-2xl font-bold">Add New Record</h3>
+          <h3 class="text-2xl font-bold uppercase">Add New Record</h3>
           <div
             class="w-10 h-10 rounded-full bg-slate-100 flex justify-center items-center cursor-pointer hover:bg-slate-200 hover:text-black duration-300"
             @click="hide"

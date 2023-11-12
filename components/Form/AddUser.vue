@@ -14,6 +14,7 @@
     />
     <PrimaryIconSelect
       label="Position"
+      placeholder="select the position"
       :options="positions"
       icon="solar:posts-carousel-horizontal-line-duotone"
       v-model="position"
@@ -30,6 +31,7 @@
       <template v-else>
         <PrimaryIconSelect
           :label="element.label"
+          :placeholder="element.placeholder"
           :options="element.options"
           :icon="element.icon"
         />
@@ -55,10 +57,6 @@
 import elements from "~/assets/data/user-elements";
 
 const positions = [
-  {
-    value: 0,
-    label: "select the poistion",
-  },
   {
     value: 1,
     label: "Student",
