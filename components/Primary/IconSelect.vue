@@ -18,7 +18,7 @@
         <div
           class="flex flex-col w-full absolute mt-11 rounded-md bg-gray-200 p-2 gap-y-1 border border-gray-500 z-50"
           :class="{
-            hidden: !searched || selected,
+            hidden: !searched || selected || filter_options.length === 0,
           }"
         >
           <span
