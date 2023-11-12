@@ -11,6 +11,7 @@
         :type="type"
         class="w-full h-10 rounded-md bg-transparent placeholder:uppercase outline-none border border-gray-400 focus:border-gray-700 text-gray-700 pl-10 duration-300"
         :placeholder="placeholder"
+        @input="$emit('update:modelValue', $event.target.value)" 
       />
     </div>
   </div>

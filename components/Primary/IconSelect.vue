@@ -9,6 +9,7 @@
         </div>
         <select
           class="w-full h-10 uppercase rounded-md bg-transparent outline-none border border-gray-400 focus:border-gray-700 text-gray-700 pl-10 duration-300"
+          @change="$emit('update:modelValue', $event.target.value)"  
         >
         <option
             v-for="option in options"

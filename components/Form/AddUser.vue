@@ -6,10 +6,17 @@
       icon="mdi:account-outline"
       placeholder="JOHN DOE"
     />
+    <PrimaryIconInput
+      label="mobile"
+      type="text"
+      icon="majesticons:phone-dial-line"
+      placeholder="071 000 00xx"
+    />
     <PrimaryIconSelect
       label="Position"
       :options="positions"
-      icon="mdi:account-outline"
+      icon="solar:posts-carousel-horizontal-line-duotone"
+      v-model="position"
     />
     <template v-for="(element, index) in elements[position]" :key="index">
       <template v-if="element.type === 'input'">
@@ -71,7 +78,7 @@ const positions = [
 export default {
   data() {
     return {
-      position: 1,
+      position: 0,
     };
   },
 };

@@ -2,7 +2,7 @@
   <NuxtLayout name="app">
     <div class="rounded-lg bg-slate-50 shadow-md py-5">
       <div class="flex justify-between items-center">
-        <h2 class="text-gray-700 text-4xl font-bold uppercase p-5">
+        <h2 class="text-gray-700 text-4xl font-extrabold uppercase p-5">
           Manage Users
         </h2>
         <div class="flex justify-end p-5 gap-2">
@@ -28,9 +28,7 @@
               <td>doe</td>
               <td>doe</td>
               <td>
-                <PrimaryIconButton
-                  icon="material-symbols:edit-square-outline-rounded"
-                />
+                <PrimaryIconButton icon="material-symbols:info-outline" />
               </td>
             </tr>
             <tr class="bg-white border-b hover:bg-gray-50">
@@ -39,9 +37,7 @@
               <td>doe</td>
               <td>doe</td>
               <td>
-                <PrimaryIconButton
-                  icon="material-symbols:edit-square-outline-rounded"
-                />
+                <PrimaryIconButton icon="material-symbols:info-outline" />
               </td>
             </tr>
           </tbody>
