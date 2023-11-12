@@ -1,61 +1,37 @@
-<script setup>
-useHead({
-  title: "Overdue | Sri Dharmaloka College",
-});
-</script>
-
 <template>
   <NuxtLayout name="app">
     <div class="space-y-5">
-      <div class="rounded-lg shadow-sm bg-slate-50">
-        <!-- Buttons Start -->
-        <div
-          class="p-5 space-y-2 lg:space-y-0 lg:space-x-2 flex flex-col lg:flex-row items-center"
-        >
-          <select
-            class="select select-accent bg-accent-content w-full max-w-xs lg:w-auto"
+      <div class="rounded-lg shadow-sm bg-slate-50 py-5">
+        <!-- Button Start -->
+        <div class="w-full flex flex-col gap-2">
+          <h2
+            class="text-gray-700 pt-1 sm:text-2xl md:text-3xl lg:text-4xl font-extrabold uppercase px-5"
           >
-            <option disabled selected>Select Category</option>
-            <option>Article</option>
-            <option>News Paper</option>
-            <option>Books</option>
-          </select>
-
-          <input
-            type="text"
-            placeholder="Type here"
-            class="input input-accent bg-accent-content w-full max-w-xs lg:w-auto"
-          />
+            overdue books
+          </h2>
+          <div class="flex items-center my-4 px-5 pt-1">
+            <PrimaryFilter placeholder="EX: sherlock holmes" />
+          </div>
         </div>
         <!-- Buttons End -->
 
         <!-- Table Start -->
-        <div class="overflow-x-auto rounded-b-lg">
-          <table class="w-full text-md text-left text-gray-500">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-50">
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="col" class="px-6 py-3">Book id</th>
-                <th scope="col" class="px-6 py-3">title</th>
-                <th scope="col" class="px-6 py-3">reserver</th>
-                <th scope="col" class="px-6 py-3">due date</th>
-                <th scope="col" class="px-6 py-3">Action</th>
-              </tr>
-            </thead>
+        <div class="overflow-x-auto rounded-b-lg px-5">
+          <table class="w-full text-md text-left text-gray-500 shadow-lg">
+            <AppTableHead :columns="Headtitle" />
             <tbody>
               <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4 text-right flex justify-end space-x-1">
+                <td>10253</td>
+                <td>Famous Five Part 1</td>
+                <td>doe doe</td>
+                <td>2023/10/25</td>
+                <td>
                   <!-- Assuming PrimaryIconButton is properly defined -->
                   <PrimaryIconButton
                     icon="material-symbols:check-circle-outline"
                     colors="bg-green-700 text-white"
                   />
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                  />
+                  <PrimaryIconButton icon="material-symbols:info-outline" />
                   <PrimaryIconButton
                     icon="ic:baseline-block"
                     colors="bg-red-700 text-white"
@@ -63,19 +39,35 @@ useHead({
                 </td>
               </tr>
               <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4 text-right flex justify-end space-x-1">
+                <td>10253</td>
+                <td>Famous Five Part 1</td>
+                <td>doe doe</td>
+                <td>2023/10/25</td>
+                <td>
                   <!-- Assuming PrimaryIconButton is properly defined -->
                   <PrimaryIconButton
                     icon="material-symbols:check-circle-outline"
                     colors="bg-green-700 text-white"
                   />
+                  <PrimaryIconButton icon="material-symbols:info-outline" />
                   <PrimaryIconButton
-                    icon="material-symbols:info-outline"
+                    icon="ic:baseline-block"
+                    colors="bg-red-700 text-white"
                   />
+                </td>
+              </tr>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td>10253</td>
+                <td>Famous Five Part 1</td>
+                <td>doe doe</td>
+                <td>2023/10/25</td>
+                <td>
+                  <!-- Assuming PrimaryIconButton is properly defined -->
+                  <PrimaryIconButton
+                    icon="material-symbols:check-circle-outline"
+                    colors="bg-green-700 text-white"
+                  />
+                  <PrimaryIconButton icon="material-symbols:info-outline" />
                   <PrimaryIconButton
                     icon="ic:baseline-block"
                     colors="bg-red-700 text-white"
@@ -90,3 +82,10 @@ useHead({
     </div>
   </NuxtLayout>
 </template>
+
+<script setup>
+useHead({
+  title: "Overdue | Sri Dharmaloka College",
+});
+const Headtitle = ["Book id", "title", "reserver", "due date", "Action"];
+</script>

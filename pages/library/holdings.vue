@@ -4,7 +4,9 @@
       <div class="rounded-lg bg-slate-50 shadow-md py-5">
         <div class="w-full flex flex-col gap-2">
           <div class="flex justify-between items-center">
-            <h2 class="text-gray-700 text-4xl font-extrabold uppercase px-5">
+            <h2
+              class="text-gray-700 sm:text-2xl md:text-3xl lg:text-4xl font-extrabold uppercase px-5"
+            >
               Available Holdings
             </h2>
             <div class="flex justify-end px-5 gap-2">
@@ -44,7 +46,9 @@
       <div class="rounded-lg bg-slate-50 shadow-md py-5">
         <div class="w-full flex flex-col gap-2">
           <div class="flex justify-between items-center">
-            <h2 class="text-gray-700 text-4xl font-extrabold uppercase px-5">
+            <h2
+              class="text-gray-700 sm:text-2xl md:text-3xl lg:text-4xl font-extrabold uppercase px-5"
+            >
               Removed Holdings
             </h2>
             <div class="flex justify-end px-5 gap-2">
