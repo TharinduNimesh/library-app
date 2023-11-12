@@ -1,21 +1,28 @@
 <template>
   <NuxtLayout name="app">
     <div class="rounded-lg bg-slate-50 shadow-md py-5">
-      <div class="flex justify-between items-center">
-        <h2 class="text-gray-700 text-4xl font-extrabold uppercase p-5">
-          Manage Users
-        </h2>
-        <div class="flex justify-end p-5 gap-2">
-          <button
-            class="btn bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
-          >
-            <Icon class="text-lg" name="mingcute:upload-2-fill" />
-            <span>Export</span>
-          </button>
-          <button class="btn text-slate-200" @click="show">
-            <Icon class="text-lg" name="mingcute:add-circle-fill" />
-            <span>Add New Record</span>
-          </button>
+      <div class="w-full flex flex-col gap-2">
+        <div class="flex justify-between items-center">
+          <h2 class="text-gray-700 text-4xl font-extrabold uppercase px-5">
+            Manage Users
+          </h2>
+          <div class="flex justify-end px-5 gap-2">
+            <button
+              class="btn bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+            >
+              <Icon class="text-lg" name="mingcute:upload-2-fill" />
+              <span>Export</span>
+            </button>
+            <button class="btn text-slate-200" @click="show">
+              <Icon class="text-lg" name="mingcute:add-circle-fill" />
+              <span>Add New Record</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center my-4 px-5">
+          <PrimaryFilter 
+            placeholder="EX: JOHN DOE"
+          />
         </div>
       </div>
       <div class="overflow-x-auto rounded-b-lg px-5">
