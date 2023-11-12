@@ -5,9 +5,9 @@ const routes = [
     path: "/library/dashboard",
   },
   {
-    name: "Users",
+    name: "Memebers",
     icon: "material-symbols:person-pin",
-    path: "/library/users",
+    path: "/library/memebers",
   },
   {
     name: "Holdings",

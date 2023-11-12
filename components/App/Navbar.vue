@@ -7,7 +7,7 @@
     }"
   >
     <div class="w-full flex flex-col items-center text-center mt-3">
-      <h3 class="text-2xl font-bold text-gray-700">Sri Dharmaloka College</h3>
+      <h3 class="text-2xl uppercase font-bold text-gray-700">Sri Dharmaloka College</h3>
       <img src="/images/logo.png" alt="Dharmaloka Logo" class="mt-2 max-w-[110px]" />
     </div>
 

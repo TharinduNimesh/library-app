@@ -4,7 +4,7 @@
       <div class="w-full flex flex-col gap-2">
         <div class="flex justify-between items-center">
           <h2 class="text-gray-700 text-4xl font-extrabold uppercase px-5">
-            Manage Users
+            Manage Members
           </h2>
           <div class="flex justify-end px-5 gap-2">
             <button
