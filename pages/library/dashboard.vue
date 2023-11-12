@@ -6,15 +6,8 @@ useHead({
 
 <template>
   <NuxtLayout name="app">
-    <div
-      class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between"
-    >
-      <div class="mr-6">
-        <h1 class="text-4xl font-semibold mb-2">Dashboard</h1>
-      </div>
-    </div>
-
-    <section class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+    <!-- Card Start -->
+    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
       <div class="flex items-center p-8 bg-white shadow rounded-lg">
         <div class="mr-4">
           <PrimaryIconButton
@@ -54,10 +47,9 @@ useHead({
         </div>
       </div>
     </section>
+    <!-- Card End -->
 
-    <section
-      class="grid md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-3 xl:grid-flow-col gap-5 pt-5"
-    >
+    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-5">
       <div
         class="flex flex-col md:col-span-2 md:row-span-2 bg-white shadow rounded-lg"
       >
@@ -115,6 +107,18 @@ useHead({
                       colors="bg-red-700 text-white"
                     />
                   </td>
+                </tr><tr class="bg-white border-b hover:bg-gray-50">
+                  <td class="px-6 py-4">doe</td>
+                  <td class="px-6 py-4">doe</td>
+                  <td class="px-6 py-4">doe</td>
+                  <td class="px-6 py-4 text-right flex justify-end space-x-1">
+                    <!-- Assuming PrimaryIconButton is properly defined -->
+                    <PrimaryIconButton icon="material-symbols:info-outline" />
+                    <PrimaryIconButton
+                      icon="material-symbols:delete-outline"
+                      colors="bg-red-700 text-white"
+                    />
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -123,13 +127,12 @@ useHead({
         </div>
       </div>
 
-      <div class="row-span-3 bg-white shadow rounded-lg">
+      <div class="md:row-span-2 bg-white shadow rounded-lg">
         <div
           class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100"
         >
           <span>Recent Books</span>
         </div>
-
         <div class="overflow-y-auto" style="max-height: 24rem">
           <ul class="p-6 space-y-6">
             <li class="flex items-center">
@@ -187,6 +190,20 @@ useHead({
               ></div>
               <span class="text-gray-600">Calvin Steward</span>
               <span class="ml-auto font-semibold">8.9</span>
+            </li>
+            <li class="flex items-center">
+              <div
+                class="h-3 w-3 mr-3 bg-green-600 rounded-full overflow-hidden"
+              ></div>
+              <span class="text-gray-600">Ralph Richards</span>
+              <span class="ml-auto font-semibold">8.7</span>
+            </li>
+            <li class="flex items-center">
+              <div
+                class="h-3 w-3 mr-3 bg-green-600 rounded-full overflow-hidden"
+              ></div>
+              <span class="text-gray-600">Ralph Richards</span>
+              <span class="ml-auto font-semibold">8.7</span>
             </li>
             <li class="flex items-center">
               <div
