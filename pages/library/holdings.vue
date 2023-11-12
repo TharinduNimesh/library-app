@@ -17,6 +17,37 @@
                 <Icon class="text-lg" name="mdi:book-plus-outline" />
                 <span class="hidden sm:inline">add issue</span>
               </button>
+              <label for="my_modal_6" class="btn"
+                ><Icon class="text-lg" name="mingcute:add-circle-fill" />add
+                holding</label
+              >
+
+              <!-- Put this part before </body> tag -->
+              <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+              <div class="modal">
+                <div class="modal-box bg-white pb-40">
+                  <form class="w-full flex flex-col gap-5">
+                    <PrimaryIconInput
+                      label="Book id"
+                      type="text"
+                      icon="material-symbols:book-2-outline-rounded"
+                      placeholder="enter book id"
+                    />
+                    <PrimaryIconSelect
+                      label="Position"
+                      placeholder="select the position"
+                      :options="positions"
+                      icon="solar:posts-carousel-horizontal-line-duotone"
+                      v-model="position"
+                    />
+                  </form>
+                  <div class="modal-action">
+                    <label for="my_modal_6" class="btn btn-neutral"
+                      >Close</label
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex items-center my-4 px-5">
@@ -55,11 +86,37 @@
               Removed Holdings
             </h2>
             <div class="flex justify-end px-5 gap-2">
-              <button class="btn text-slate-200">
-                <Icon class="text-lg" name="mingcute:add-circle-fill" />
-                <span>Add New Record</span>
-              </button>
+              <label for="my_modal_6" class="btn"
+                ><Icon
+                  class="text-lg"
+                  name="material-symbols:delete-outline"
+                />quick remove</label
+              >
             </div>
+
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+            <div class="modal">
+              <div class="modal-box bg-white">
+                <form class="w-full flex flex-col gap-5">
+                  <PrimaryIconInput
+                    label="Full Name"
+                    type="text"
+                    icon="mdi:account-outline"
+                    placeholder="JOHN DOE"
+                  />
+                  <PrimaryTextarea
+                    label="Reason"
+                    type="text"
+                    placeholder="Write a reason for removing this book"
+                  />
+                </form>
+                <div class="modal-action">
+                  <label for="my_modal_6" class="btn btn-neutral">Close!</label>
+                </div>
+              </div>
+            </div>
+            <!--  -->
           </div>
           <div class="flex items-center my-4 px-5">
             <PrimaryFilter placeholder="EX: sherlock holmes" />
@@ -110,4 +167,18 @@ function show() {
   isModalVisible.value = true;
   isContainerVisible.value = true;
 }
+const positions = [
+  {
+    value: 1,
+    label: "Student",
+  },
+  {
+    value: 2,
+    label: "Teacher",
+  },
+  {
+    value: 3,
+    label: "Non-academic staff",
+  },
+];
 </script>
