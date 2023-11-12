@@ -10,9 +10,12 @@
               Available Holdings
             </h2>
             <div class="flex justify-end px-5 gap-2">
-              <button class="btn text-slate-200" @click="show">
-                <Icon class="text-lg" name="mingcute:add-circle-fill" />
-                <span>Add New Record</span>
+              <button
+                class="btn bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+                @click="show"
+              >
+                <Icon class="text-lg" name="mdi:book-plus-outline" />
+                <span class="hidden sm:inline">add issue</span>
               </button>
             </div>
           </div>
@@ -52,7 +55,7 @@
               Removed Holdings
             </h2>
             <div class="flex justify-end px-5 gap-2">
-              <button class="btn text-slate-200" @click="show">
+              <button class="btn text-slate-200">
                 <Icon class="text-lg" name="mingcute:add-circle-fill" />
                 <span>Add New Record</span>
               </button>
@@ -87,7 +90,7 @@
       </div>
     </div>
     <template #RightModal>
-      <div>c</div>
+      <FormAddIssue />
     </template>
   </NuxtLayout>
 </template>
