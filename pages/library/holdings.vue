@@ -1,150 +1,95 @@
-<script setup>
-useHead({
-  title: "Holdings | Sri Dharmaloka College",
-});
-</script>
-
 <template>
   <NuxtLayout name="app">
     <div class="space-y-5">
-      <div class="rounded-lg shadow-sm bg-slate-50">
-        <!-- Buttons Start -->
-        <div
-          class="p-5 space-y-2 lg:space-y-0 lg:space-x-2 flex flex-col lg:flex-row items-center"
-        >
-          <select
-            class="select select-accent bg-accent-content w-full max-w-xs lg:w-auto"
-          >
-            <option disabled selected>Select Category</option>
-            <option>Article</option>
-            <option>News Paper</option>
-            <option>Books</option>
-          </select>
-
-          <input
-            type="text"
-            placeholder="Type here"
-            class="input input-accent bg-accent-content w-full max-w-xs lg:w-auto"
-          />
+      <div class="rounded-lg bg-slate-50 shadow-md py-5">
+        <div class="w-full flex flex-col gap-2">
+          <div class="flex justify-between items-center">
+            <h2 class="text-gray-700 text-4xl font-extrabold uppercase px-5">
+              Available Holdings
+            </h2>
+            <div class="flex justify-end px-5 gap-2">
+              <button class="btn text-slate-200" @click="show">
+                <Icon class="text-lg" name="mingcute:add-circle-fill" />
+                <span>Add New Record</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center my-4 px-5">
+            <PrimaryFilter placeholder="EX: sherlock holmes" />
+          </div>
         </div>
-        <!-- Buttons End -->
-
-        <!-- Table Start -->
-        <div class="overflow-x-auto rounded-b-lg">
-          <table class="w-full text-md text-left text-gray-500">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-50">
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="col" class="px-6 py-3">book ID</th>
-                <th scope="col" class="px-6 py-3">title</th>
-                <th scope="col" class="px-6 py-3">author</th>
-                <th scope="col" class="px-6 py-3">Action</th>
-              </tr>
-            </thead>
+        <div class="overflow-x-auto rounded-b-lg px-5">
+          <table class="w-full text-md text-left text-gray-500 shadow-lg">
+            <AppTableHead :columns="availableHead" />
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4 text-right flex justify-end space-x-1">
-                  <!-- Assuming PrimaryIconButton is properly defined -->
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                  />
-                  <PrimaryIconButton
-                    icon="material-symbols:delete-outline"
-                    colors="bg-red-700 text-white"
-                  />
+              <tr
+                v-for="(row, index) in 5"
+                :key="index"
+                class="bg-white border-b hover:bg-gray-50"
+              >
+                <td class="flex flex-col">
+                  <p>sherlock holmes</p>
+                  <p class="text-gray-400">Kumarathunga Munidasa</p>
                 </td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4 text-right flex justify-end space-x-1">
-                  <!-- Assuming PrimaryIconButton is properly defined -->
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                  />
-                  <PrimaryIconButton
-                    icon="material-symbols:delete-outline"
-                    colors="bg-red-700 text-white"
-                  />
+                <td>8 COPIES</td>
+                <td>3 AVAILABLE</td>
+                <td>
+                  <PrimaryIconButton icon="material-symbols:info-outline" />
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <!-- Table End -->
       </div>
-      <div class="rounded-lg bg-slate-50 shadow-sm">
-        <!-- Buttons Start -->
-        <div
-          class="p-5 space-y-2 lg:space-y-0 lg:space-x-2 flex flex-col lg:flex-row items-center"
-        >
-          <select
-            class="select select-accent bg-accent-content w-full max-w-xs lg:w-auto"
-          >
-            <option disabled selected>Select Category</option>
-            <option>Article</option>
-            <option>News Paper</option>
-            <option>Books</option>
-          </select>
-
-          <input
-            type="text"
-            placeholder="Type here"
-            class="input input-accent bg-accent-content w-full max-w-xs lg:w-auto"
-          />
+      <div class="rounded-lg bg-slate-50 shadow-md py-5">
+        <div class="w-full flex flex-col gap-2">
+          <div class="flex justify-between items-center">
+            <h2 class="text-gray-700 text-4xl font-extrabold uppercase px-5">
+              Removed Holdings
+            </h2>
+            <div class="flex justify-end px-5 gap-2">
+              <button class="btn text-slate-200" @click="show">
+                <Icon class="text-lg" name="mingcute:add-circle-fill" />
+                <span>Add New Record</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center my-4 px-5">
+            <PrimaryFilter placeholder="EX: sherlock holmes" />
+          </div>
         </div>
-        <!-- Buttons End -->
-
-        <!-- Table Start -->
-        <div class="overflow-x-auto rounded-b-lg">
-          <table class="w-full text-md text-left text-gray-500">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-50">
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="col" class="px-6 py-3">book ID</th>
-                <th scope="col" class="px-6 py-3">title</th>
-                <th scope="col" class="px-6 py-3">author</th>
-                <th scope="col" class="px-6 py-3">Action</th>
-              </tr>
-            </thead>
+        <div class="overflow-x-auto rounded-b-lg px-5">
+          <table class="w-full text-md text-left text-gray-500 shadow-lg">
+            <AppTableHead :columns="removedHead" />
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4 text-right flex justify-end space-x-1">
-                  <!-- Assuming PrimaryIconButton is properly defined -->
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                  />
-                  <PrimaryIconButton
-                    icon="material-symbols:delete-outline"
-                    colors="bg-red-700 text-white"
-                  />
+              <tr
+                v-for="(row, index) in 5"
+                :key="index"
+                class="bg-white border-b hover:bg-gray-50"
+              >
+                <td>1024</td>
+                <td class="flex flex-col">
+                  <p>sherlock holmes</p>
+                  <p class="text-gray-400">Kumarathunga Munidasa</p>
                 </td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4">doe</td>
-                <td class="px-6 py-4 text-right flex justify-end space-x-1">
-                  <!-- Assuming PrimaryIconButton is properly defined -->
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                  />
-                  <PrimaryIconButton
-                    icon="material-symbols:delete-outline"
-                    colors="bg-red-700 text-white"
-                  />
+                <td>2023/12/12</td>
+                <td>
+                  <PrimaryIconButton icon="material-symbols:info-outline" />
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <!-- Table End -->
       </div>
     </div>
   </NuxtLayout>
 </template>
+
+<script setup>
+useHead({
+  title: "Holdings | Sri Dharmaloka College",
+});
+
+const availableHead = ["Title", "Copies", "Available", "action"];
+const removedHead = ["Book ID", "Title", "Removed AT", "More"];
+</script>
