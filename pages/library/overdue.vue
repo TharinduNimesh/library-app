@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="app">
-    <div class="space-y-5">
+    <div class="grid grid-cols-1 space-y-5">
       <div class="rounded-lg shadow-sm bg-slate-50 py-5">
         <!-- Button Start -->
         <div class="w-full flex flex-col gap-2">

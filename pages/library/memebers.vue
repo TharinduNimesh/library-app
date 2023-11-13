@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="app">
-    <div class="space-y-5">
+    <div class="grid grid-cols-1 space-y-5">
       <div class="rounded-lg bg-slate-50 shadow-md py-5">
         <div class="w-full flex flex-col gap-2">
           <div class="flex justify-between items-center">

@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="app">
-    <div class="space-y-5">
+    <div class="grid grid-cols-1 space-y-5">
       <div class="rounded-lg bg-slate-50 shadow-md py-5">
         <div class="w-full flex flex-col gap-2">
           <div class="flex justify-between items-center">
@@ -17,10 +17,10 @@
                 <Icon class="text-lg" name="mdi:book-plus-outline" />
                 <span class="hidden sm:inline">add issue</span>
               </button>
-              <label for="my_modal_6" class="btn"
-                ><Icon class="text-lg" name="mingcute:add-circle-fill" />add
-                holding</label
-              >
+              <label for="my_modal_6 hidden sm:inline" class="btn">
+                <Icon class="text-lg" name="mingcute:add-circle-fill" />
+                <span class="hidden sm:inline">add holding</span>
+              </label>
 
               <!-- Put this part before </body> tag -->
               <input type="checkbox" id="my_modal_6" class="modal-toggle" />
@@ -87,11 +87,9 @@
             </h2>
             <div class="flex justify-end px-5 gap-2">
               <label for="my_modal_6" class="btn"
-                ><Icon
-                  class="text-lg"
-                  name="material-symbols:delete-outline"
-                />quick remove</label
-              >
+                ><Icon class="text-lg" name="material-symbols:delete-outline" />
+                <span class="hidden sm:inline">quick remove</span>
+              </label>
             </div>
 
             <!-- Put this part before </body> tag -->

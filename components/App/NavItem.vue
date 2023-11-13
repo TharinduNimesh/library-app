@@ -1,15 +1,17 @@
 <template>
-  <NuxtLink
-    :to="path"
-    class="nav-item w-full h-14 flex items-center justify-between rounded-md px-3 duration-300 transition-colors"
-    :class="{
-      'active': $route.path === path,
-      'inactive': $route.path !== path,
-    }"
-  >
-    <Icon :name="icon" class="text-3xl" />
-    <span class="text-lg font-bold uppercase">{{ name }}</span>
-  </NuxtLink>
+  <li class="min-w-max">
+    <NuxtLink
+      :to="path"
+      :class="{
+        active: $route.path === path,
+        inactive: $route.path !== path,
+      }"
+      class="relative h-14 flex items-center space-x-4 px-4 py-3 duration-300 transition-colors"
+    >
+      <Icon :name="icon" class="text-3xl" />
+      <span class="text-lg font-bold uppercase">{{ name }}</span>
+    </NuxtLink>
+  </li>
 </template>
 
 <script>
@@ -28,7 +30,7 @@ export default {
 }
 
 .active:hover {
-  @apply bg-gray-800 text-white; 
+  @apply bg-gray-800 text-white;
 }
 
 .inactive {
