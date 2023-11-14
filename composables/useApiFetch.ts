@@ -6,14 +6,14 @@ export function useApiFetch<T>(
 ) {
   let headers: any = {};
 
-  const access_token = useCookie("access-token");
-  const refresh_token = useCookie("refresh-token");
+  const access_token = useCookie("access-token").value?.toString();
+  const refresh_token = useCookie("refresh-token").value?.toString();
 
-  if (access_token.value) {
+  if (access_token) {
     headers["Authorization"] = `Beaver ${access_token}`;
   }
 
-  if (refresh_token.value) {
+  if (refresh_token) {
     headers["refresh-token"] = refresh_token;
   }
 
