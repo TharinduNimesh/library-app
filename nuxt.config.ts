@@ -8,5 +8,10 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  routeRules: {
+    "/**": {
+      cors: true
+    }
+  },
   modules: ['nuxt-icon']
 })

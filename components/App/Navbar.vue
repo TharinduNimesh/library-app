@@ -10,15 +10,10 @@
       <div class="flex h-screen flex-col justify-between pt-2 pb-0">
         <div>
           <div class="w-full flex flex-col items-center text-center mt-3">
-            <h3
-              class="hidden text-lg lg:text-2xl uppercase font-bold text-gray-700"
-            >
-              Sri Dharmaloka College
-            </h3>
             <img
               src="/images/logo.png"
               alt="Dharmaloka Logo"
-              class="w-11 lg:w-11"
+              class="w-full max-w-[80px] px-1"
             />
           </div>
           <ul class="mt-6 space-y-2 tracking-wide">
