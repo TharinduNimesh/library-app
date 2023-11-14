@@ -17,7 +17,7 @@
                 <Icon class="text-lg" name="mdi:book-plus-outline" />
                 <span class="hidden sm:inline">add issue</span>
               </button>
-              <label for="my_modal_6 hidden sm:inline" class="btn">
+              <label for="my_modal_6 hidden sm:inline" class="btn text-slate-100">
                 <Icon class="text-lg" name="mingcute:add-circle-fill" />
                 <span class="hidden sm:inline">add holding</span>
               </label>

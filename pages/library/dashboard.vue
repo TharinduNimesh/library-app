@@ -12,12 +12,12 @@ useHead({
         <div class="mr-4">
           <PrimaryIconButton
             icon="material-symbols:book-2-outline-rounded"
-            class="bg-green-600 w-16 h-16 text-center text-5xl flex justify-center"
+            class="bg-gray-800 w-16 h-16 text-center text-5xl flex justify-center"
           />
         </div>
         <div>
-          <span class="block text-2xl font-bold">62</span>
-          <span class="block text-gray-500">All Books</span>
+          <span class="block font-bold uppercase text-xl text-gray-800">All Books</span>
+          <span class="block text-lg font-bold">62</span>
         </div>
       </div>
 
@@ -25,12 +25,12 @@ useHead({
         <div class="mr-6">
           <PrimaryIconButton
             icon="material-symbols:article-outline"
-            class="bg-green-600 w-16 h-16 text-center text-5xl flex justify-center"
+            class="bg-gray-800 w-16 h-16 text-center text-5xl flex justify-center"
           />
         </div>
         <div>
-          <span class="block text-2xl font-bold">6.8</span>
-          <span class="block text-gray-500">Article</span>
+          <span class="block font-bold uppercase text-xl text-gray-800">Article</span>
+          <span class="block text-lg font-bold">6.8</span>
         </div>
       </div>
 
@@ -38,12 +38,12 @@ useHead({
         <div class="mr-6">
           <PrimaryIconButton
             icon="material-symbols:person-2-outline"
-            class="bg-green-600 w-16 h-16 text-center text-5xl flex justify-center"
+            class="bg-gray-800 w-16 h-16 text-center text-5xl flex justify-center"
           />
         </div>
         <div>
-          <span class="inline-block text-2xl font-bold">50</span>
-          <span class="block text-gray-500">Users</span>
+          <span class="block font-bold uppercase text-xl text-gray-800">Users</span>
+          <span class="inline-block text-lg font-bold">50</span>
         </div>
       </div>
     </section>
@@ -53,7 +53,7 @@ useHead({
       <div
         class="flex flex-col md:col-span-2 md:row-span-2 bg-white shadow rounded-lg"
       >
-        <div class="px-6 py-5 font-semibold border-b border-gray-100">
+        <div class="px-6 py-5 text-gray-700 uppercase text-lg font-semibold border-b border-gray-100">
           This Month popular Books
         </div>
         <div class="p-4 flex-grow">
@@ -129,7 +129,7 @@ useHead({
 
       <div class="md:row-span-2 bg-white shadow rounded-lg">
         <div
-          class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100"
+          class="flex items-center justify-between text-gray-700 uppercase text-lg px-6 py-5 font-semibold border-b border-gray-100"
         >
           <span>Recent Books</span>
         </div>

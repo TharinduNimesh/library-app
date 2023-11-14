@@ -7,6 +7,7 @@ table thead tr th {
   color: #ddd;
   padding: 15px 0;
   padding-left: 20px;
+  white-space: nowrap;
 }
 
 table thead tr th:first-child {
@@ -20,7 +21,15 @@ table thead tr th:last-child {
 table tbody tr td {
   padding: 8px 20px;
   white-space: nowrap;
-  @apply uppercase text-gray-800
+  @apply uppercase text-gray-800;
+}
+
+table tbody tr td:last-child button {
+  margin: 0 5px;
+}
+
+.btn {
+  text-transform: uppercase;
 }
 
 .btn:hover {
