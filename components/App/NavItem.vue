@@ -6,7 +6,7 @@
         active: $route.path === path,
         inactive: $route.path !== path,
       }"
-      class="relative h-14 rounded-r-md flex items-center space-x-4 px-4 py-3 duration-300 transition-colors"
+      class="nav-item relative h-14 rounded-r-md flex items-center space-x-4 px-4 py-3 duration-300 transition-colors"
     >
       <Icon :name="icon" class="text-3xl" />
       <span class="text-lg font-bold uppercase">{{ name }}</span>

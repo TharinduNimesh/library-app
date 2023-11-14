@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-screen bg-slate-200 flex gap-2">
     <!-- AppNavbar Component -->
-    <AppNavbar :is-visible="navbarVisible" @toggle-navbar="toggleNavbar" />
+    <AppNavbar @toggle-navbar="toggleNavbar" />
 
     <!-- Main Content Area -->
     <div class="w-full relative flex flex-col lg:pl-0 pr-2 py-2">
@@ -28,27 +28,10 @@
 /* Media query for mobile screens */
 </style>
 
-<script>
-export default {
-  data() {
-    return {
-      navbar: true,
-      isMobile: true,
-    };
-  },
-  beforeMount() {
-    this.isMobile = window.innerWidth < 720;
-    this.navbar = !this.isMobile;
-  },
-  methods: {
-    toggleNavbar() {
-      this.navbar = !this.navbar;
-    },
-  },
-  computed: {
-    navbarVisible() {
-      return this.navbar;
-    },
-  },
-};
+<script setup>
+const navbar = useNavbarVisible();
+
+function toggleNavbar() {
+  navbar.value = !navbar.value;
+}
 </script>
