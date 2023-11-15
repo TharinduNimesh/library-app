@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  props: ["label", "icon", "placeholder", "options", "modelValue"],
+  props: ["label", "icon", "placeholder", "name", "options", "modelValue"],
   data() {
     return {
       searched: "",

@@ -24,11 +24,18 @@
   </div>
 </template>
 
-<style scoped>
-/* Media query for mobile screens */
+<style>
+@import url('/lib/izitoast/dist/css/iziToast.min.css')
 </style>
 
 <script setup>
+useHead({
+  script: [
+    {
+      src: "/lib/izitoast/dist/js/iziToast.min.js",
+    }
+  ]
+});
 const navbar = useNavbarVisible();
 
 function toggleNavbar() {

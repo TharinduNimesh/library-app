@@ -11,6 +11,7 @@
         :type="type"
         class="w-full h-10 rounded-md bg-transparent placeholder:uppercase outline-none border border-gray-400 focus:border-gray-700 text-gray-700 pl-10 duration-300"
         :placeholder="placeholder"
+        :name="name"
         @input="$emit('update:modelValue', $event.target.value)" 
       />
     </div>
@@ -19,6 +20,6 @@
 
 <script>
 export default {
-  props: ["label", "type", "icon", "placeholder", "modelValue"],
+  props: ["label", "type", "icon", "name", "placeholder", "modelValue"],
 };
 </script>

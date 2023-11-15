@@ -97,6 +97,7 @@ const elements = [
       label: "Registration Number",
       icon: "material-symbols-light:app-registration-outline-sharp",
       placeholder: "2305x",
+      name: "index"
     },
     {
       type: "select",
@@ -104,12 +105,14 @@ const elements = [
       label: "Grade",
       icon: "majesticons:academic-cap-line",
       options: grades,
+      name: "grade"
     },
     {
       type: "input",
       label: "Class",
       icon: "majesticons:home-line",
       placeholder: "B",
+      name: "class"
     },
   ],
   [
@@ -118,6 +121,7 @@ const elements = [
       label: "NIC Number",
       icon: "material-symbols-light:app-registration-outline-sharp",
       placeholder: "764523xxxV",
+      name: "index"
     },
     {
       type: "select",
@@ -125,12 +129,14 @@ const elements = [
       placeholder: "Select The Grade",
       icon: "majesticons:academic-cap-line",
       options: grades,
+      name: "grade"
     },
     {
       type: "input",
       label: "Class",
       icon: "majesticons:home-line",
       placeholder: "B",
+      name: "class"
     },
   ],
   [
@@ -139,6 +145,7 @@ const elements = [
       label: "NIC Number",
       icon: "material-symbols-light:app-registration-outline-sharp",
       placeholder: "764523xxxV",
+      name: "index"
     },
     {
       type: "select",
@@ -146,6 +153,7 @@ const elements = [
       placeholder: "Select The Staff Position",
       icon: "material-symbols-light:card-travel-outline-sharp",
       options: roles,
+      name: "role_id"
     },
   ],
 ];
