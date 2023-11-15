@@ -43,12 +43,14 @@
                     />
                   </form>
                   <div class="modal-action mt-40">
-                    <label for="my_modal_5" class="btn btn-neutral">Submit</label>
-                  <label
-                    for="my_modal_5"
-                    class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
-                    >Close</label
-                  >
+                    <label for="my_modal_5" class="btn btn-neutral"
+                      >Submit</label
+                    >
+                    <label
+                      for="my_modal_5"
+                      class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+                      >Close</label
+                    >
                   </div>
                 </div>
               </div>
@@ -160,22 +162,27 @@
       </div>
     </div>
 
-    <!-- Remove Table Start -->
     <dialog id="my_modal_2" class="modal">
-      <div class="modal-box bg-white uppercase">
-        <h3 class="font-bold text-lg">Info !</h3>
-        <h1 class="py-4">
-          Removed By :
-          <p style="display: inline">Removed By Here</p>
-        </h1>
-        <h1 class="py-4">
-          Removed At :
-          <p style="display: inline">Removed At Here</p>
-        </h1>
-        <h1 class="py-4">
-          Reason :
-          <p style="display: inline">Reason Here</p>
-        </h1>
+      <div class="modal-box bg-white uppercase p-6">
+        <h3 class="font-bold text-lg mb-5">Info !</h3>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2">
+            <PrimaryDisableInput
+              label="Removed by"
+              placeholder="removed by here"
+            />
+          </div>
+          <div class="col-span-2">
+            <PrimaryDisableInput
+              label="Removed At"
+              placeholder="Removed At Here"
+            />
+          </div>
+          <div class="col-span-2">
+            <PrimaryDisableTextarea label="Reason" placeholder="Reason Here" />
+          </div>
+        </div>
         <div class="modal-action mt-14">
           <form method="dialog">
             <!-- if there is a button in form, it will close the modal -->
@@ -184,24 +191,25 @@
         </div>
       </div>
     </dialog>
-    <!-- Remove Table End -->
 
     <!-- Available Table Modal Start -->
     <dialog id="my_modal_1" class="modal">
       <div class="modal-box bg-white w-11/12 max-w-5xl uppercase">
-        <h3 class="font-bold text-lg">Info !</h3>
-        <h1 class="py-4">
-          Title :
-          <p style="display: inline">Book Title Here</p>
-        </h1>
-        <h1 class="py-4">
-          Author :
-          <p style="display: inline">Author Name Here</p>
-        </h1>
-        <h1 class="py-4">
-          Copies :
-          <p style="display: inline">Copies Here</p>
-        </h1>
+        <h3 class="font-bold text-lg mb-5">Info !</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2 sm:col-span-1">
+            <PrimaryDisableInput label="Title" placeholder="Book Title Here" />
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <PrimaryDisableInput
+              label="Author"
+              placeholder="Author Name Here"
+            />
+          </div>
+          <div class="col-span-2 sm:col-span-2">
+            <PrimaryDisableInput label="Copies" placeholder="Copies Here" />
+          </div>
+        </div>
         <div class="overflow-x-auto rounded-b-lg mt-5">
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="TableModal" />
