@@ -7,7 +7,7 @@ useHead({
 <template>
   <NuxtLayout name="app">
     <!-- Card Start -->
-    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
       <div class="flex items-center p-8 bg-white shadow rounded-lg">
         <div class="mr-4">
           <PrimaryIconButton
@@ -49,7 +49,7 @@ useHead({
     </section>
     <!-- Card End -->
 
-    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-5">
+    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 pt-2">
       <div
         class="flex flex-col md:col-span-2 md:row-span-2 bg-white shadow rounded-lg"
       >
