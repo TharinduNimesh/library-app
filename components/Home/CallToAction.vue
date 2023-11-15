@@ -65,16 +65,15 @@
             Login your Library Management System
           </p>
           <div class="flex flex-wrap justify-center gap-6">
-            <a
-              href="#"
+            <NuxtLink
+              to="/login"
               class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
             >
-              <NuxtLink
-                to="/login"
+              <a
                 class="relative text-base font-semibold text-white dark:text-dark"
-                >LogIn</NuxtLink
+                >LogIn</a
               >
-            </a>
+            </NuxtLink>
           </div>
         </div>
       </div>

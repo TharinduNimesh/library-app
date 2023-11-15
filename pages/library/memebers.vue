@@ -36,7 +36,11 @@
                 <td>doe</td>
                 <td>doe</td>
                 <td>
-                  <PrimaryIconButton icon="material-symbols:info-outline" />
+                  <PrimaryIconButton
+                    icon="material-symbols:info-outline"
+                    onclick="my_modal_1.showModal()"
+                  />
+                  <!-- The button to open modal -->
                 </td>
               </tr>
               <tr class="bg-white border-b hover:bg-gray-50">
@@ -45,7 +49,10 @@
                 <td>doe</td>
                 <td>doe</td>
                 <td>
-                  <PrimaryIconButton icon="material-symbols:info-outline" />
+                  <PrimaryIconButton
+                    icon="material-symbols:info-outline"
+                    onclick="my_modal_1.showModal()"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -54,6 +61,52 @@
       </div>
     </div>
 
+    <!-- Table Modal Start -->
+    <dialog id="my_modal_1" class="modal">
+      <div class="modal-box bg-white w-11/12 max-w-5xl uppercase">
+        <h3 class="font-bold text-lg">Info !</h3>
+        <h1 class="py-4">
+          Name :
+          <p style="display: inline">Your Name Here</p>
+        </h1>
+        <h1 class="py-4">
+          index/nic :
+          <p style="display: inline">Your index/nic Here</p>
+        </h1>
+        <h1 class="py-4">
+          mobile :
+          <p style="display: inline">Your mobile Here</p>
+        </h1>
+        <h1 class="py-4">
+          role :
+          <p style="display: inline">Your role Here</p>
+        </h1>
+        <div class="overflow-x-auto rounded-b-lg mt-5">
+          <table class="w-full text-md text-left text-gray-500 shadow-lg">
+            <AppTableHead :columns="TableModal" />
+            <tbody>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td>doe</td>
+                <td>doe</td>
+                <td>doe</td>
+              </tr>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td>doe</td>
+                <td>doe</td>
+                <td>doe</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <!-- Table Modal End -->
     <template #RightModal>
       <FormAddUser />
     </template>
@@ -74,4 +127,5 @@ function show() {
 }
 
 const columns = ["Id", "Name", "Mobile", "Joined At", "Action"];
+const TableModal = ["Serial no", "Took", "gave"];
 </script>

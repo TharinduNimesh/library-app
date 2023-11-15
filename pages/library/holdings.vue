@@ -17,34 +17,38 @@
                 <Icon class="text-lg" name="mdi:book-plus-outline" />
                 <span class="hidden sm:inline">add issue</span>
               </button>
-              <label for="my_modal_6 hidden sm:inline" class="btn text-slate-100">
+              <label for="my_modal_5" class="btn">
                 <Icon class="text-lg" name="mingcute:add-circle-fill" />
                 <span class="hidden sm:inline">add holding</span>
               </label>
 
               <!-- Put this part before </body> tag -->
-              <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+              <input type="checkbox" id="my_modal_5" class="modal-toggle" />
               <div class="modal">
-                <div class="modal-box bg-white pb-40">
+                <div class="modal-box bg-white">
                   <form class="w-full flex flex-col gap-5">
+                    <h3 class="font-bold text-lg uppercase">Add holding</h3>
                     <PrimaryIconInput
-                      label="Book id"
+                      label="Serial no"
                       type="text"
                       icon="material-symbols:book-2-outline-rounded"
-                      placeholder="enter book id"
+                      placeholder="enter Serial no"
                     />
                     <PrimaryIconSelect
-                      label="Position"
-                      placeholder="select the position"
+                      label="Issue"
+                      placeholder="select the Issue"
                       :options="positions"
                       icon="solar:posts-carousel-horizontal-line-duotone"
                       v-model="position"
                     />
                   </form>
-                  <div class="modal-action">
-                    <label for="my_modal_6" class="btn btn-neutral"
-                      >Close</label
-                    >
+                  <div class="modal-action mt-40">
+                    <label for="my_modal_5" class="btn btn-neutral">Submit</label>
+                  <label
+                    for="my_modal_5"
+                    class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+                    >Close</label
+                  >
                   </div>
                 </div>
               </div>
@@ -70,7 +74,10 @@
                 <td>8 COPIES</td>
                 <td>3 AVAILABLE</td>
                 <td>
-                  <PrimaryIconButton icon="material-symbols:info-outline" />
+                  <PrimaryIconButton
+                    icon="material-symbols:info-outline"
+                    onclick="my_modal_1.showModal()"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -98,10 +105,10 @@
               <div class="modal-box bg-white">
                 <form class="w-full flex flex-col gap-5">
                   <PrimaryIconInput
-                    label="Full Name"
+                    label="Serial no"
                     type="text"
                     icon="mdi:account-outline"
-                    placeholder="JOHN DOE"
+                    placeholder="Enter Serial no"
                   />
                   <PrimaryTextarea
                     label="Reason"
@@ -110,7 +117,12 @@
                   />
                 </form>
                 <div class="modal-action">
-                  <label for="my_modal_6" class="btn btn-neutral">Close!</label>
+                  <label for="my_modal_6" class="btn btn-neutral">Submit</label>
+                  <label
+                    for="my_modal_6"
+                    class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+                    >Close</label
+                  >
                 </div>
               </div>
             </div>
@@ -136,7 +148,10 @@
                 </td>
                 <td>2023/12/12</td>
                 <td>
-                  <PrimaryIconButton icon="material-symbols:info-outline" />
+                  <PrimaryIconButton
+                    icon="material-symbols:info-outline"
+                    onclick="my_modal_2.showModal()"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -144,6 +159,75 @@
         </div>
       </div>
     </div>
+
+    <!-- Remove Table Start -->
+    <dialog id="my_modal_2" class="modal">
+      <div class="modal-box bg-white uppercase">
+        <h3 class="font-bold text-lg">Info !</h3>
+        <h1 class="py-4">
+          Removed By :
+          <p style="display: inline">Removed By Here</p>
+        </h1>
+        <h1 class="py-4">
+          Removed At :
+          <p style="display: inline">Removed At Here</p>
+        </h1>
+        <h1 class="py-4">
+          Reason :
+          <p style="display: inline">Reason Here</p>
+        </h1>
+        <div class="modal-action mt-14">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <!-- Remove Table End -->
+
+    <!-- Available Table Modal Start -->
+    <dialog id="my_modal_1" class="modal">
+      <div class="modal-box bg-white w-11/12 max-w-5xl uppercase">
+        <h3 class="font-bold text-lg">Info !</h3>
+        <h1 class="py-4">
+          Title :
+          <p style="display: inline">Book Title Here</p>
+        </h1>
+        <h1 class="py-4">
+          Author :
+          <p style="display: inline">Author Name Here</p>
+        </h1>
+        <h1 class="py-4">
+          Copies :
+          <p style="display: inline">Copies Here</p>
+        </h1>
+        <div class="overflow-x-auto rounded-b-lg mt-5">
+          <table class="w-full text-md text-left text-gray-500 shadow-lg">
+            <AppTableHead :columns="TableModal" />
+            <tbody>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td>doe</td>
+                <td>doe</td>
+                <td>doe</td>
+              </tr>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td>doe</td>
+                <td>doe</td>
+                <td>doe</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <!-- Table Modal End -->
     <template #RightModal>
       <FormAddIssue />
     </template>
@@ -157,6 +241,7 @@ useHead({
 
 const availableHead = ["Title", "Copies", "Available", "action"];
 const removedHead = ["Book ID", "Title", "Removed AT", "More"];
+const TableModal = ["Serial no", "Reserved", "status"];
 
 const isModalVisible = useRightModalVisible();
 const isContainerVisible = useRightModalContainerVisible();
