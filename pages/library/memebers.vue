@@ -64,23 +64,27 @@
     <!-- Table Modal Start -->
     <dialog id="my_modal_1" class="modal">
       <div class="modal-box bg-white w-11/12 max-w-5xl uppercase">
-        <h3 class="font-bold text-lg">Info !</h3>
-        <h1 class="py-4">
-          Name :
-          <p style="display: inline">Your Name Here</p>
-        </h1>
-        <h1 class="py-4">
-          index/nic :
-          <p style="display: inline">Your index/nic Here</p>
-        </h1>
-        <h1 class="py-4">
-          mobile :
-          <p style="display: inline">Your mobile Here</p>
-        </h1>
-        <h1 class="py-4">
-          role :
-          <p style="display: inline">Your role Here</p>
-        </h1>
+        <h3 class="font-bold text-lg mb-5">Info !</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2 sm:col-span-1">
+            <PrimaryDisableInput label="Name" placeholder="Your Name Here" />
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <PrimaryDisableInput
+              label="index/nic"
+              placeholder="Your index/nic Here"
+            />
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <PrimaryDisableInput
+              label="mobile"
+              placeholder="Your mobile Here"
+            />
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <PrimaryDisableInput label="role" placeholder="Your role Here" />
+          </div>
+        </div>
         <div class="overflow-x-auto rounded-b-lg mt-5">
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="TableModal" />
