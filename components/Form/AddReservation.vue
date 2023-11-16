@@ -216,7 +216,7 @@ export default {
       };
 
       this.isChecked = false;
-    }
+    },
   },
 };
 </script>

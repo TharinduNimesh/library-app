@@ -1,3 +1,23 @@
+<script setup>
+useHead({
+  title: "Reservation | Sri Dharmaloka College",
+});
+const Headtitle = ["Holding", "Reserver", "Reserve Date", "Due Date", "Info"];
+
+const isModalVisible = useRightModalVisible();
+const isContainerVisible = useRightModalContainerVisible();
+
+function show() {
+  isModalVisible.value = true;
+  isContainerVisible.value = true;
+}
+
+const { pending: isLoading, data: reservations } = useApiFetch("/reservation", {
+  lazy: false,
+  watch: false,
+});
+</script>
+
 <template>
   <NuxtLayout name="app">
     <div class="grid grid-cols-1 space-y-5">
@@ -26,30 +46,47 @@
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="Headtitle" />
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
+              <AppTableLoading count="5" v-if="isLoading" />
+              <AppTableEmpty
+                v-else-if="!isLoading && reservations.length === 0"
+                columns="5"
+                message="There Is No Any Reservations 😊"
+              />
+              <tr
+                v-for="reservation in reservations?.reservations"
+                :key="reservation.id"
+                class="bg-white border-b hover:bg-gray-50"
+              >
                 <td>
-                  <PrimaryIconButton
-                    icon="material-symbols:check-circle-outline"
-                    colors="bg-green-700 text-white"
-                    onclick="my_modal_1.showModal()"
-                  />
+                  <p>
+                    {{ reservation.Holding.serial_no }} -
+                    {{ reservation.Holding.Issue.title }}
+                  </p>
+                  <span class="text-sm font-semibold text-gray-500">
+                    {{ reservation.Holding.Issue.Author.name }}
+                  </span>
                 </td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
+                <td>Tharindu Nimesh</td>
+                <td>
+                  {{
+                    new Date(reservation.reserved_at)
+                      .toISOString()
+                      .split("T")[0]
+                  }}
+                </td>
+                <td>
+                  {{
+                    new Date(reservation.due_date)
+                      .toISOString()
+                      .split("T")[0]
+                  }}
+                </td>
                 <td>
                   <PrimaryIconButton
-                    icon="material-symbols:check-circle-outline"
-                    colors="bg-green-700 text-white"
+                    icon="material-symbols:info-outline"
                     onclick="my_modal_1.showModal()"
                   />
+                  <!-- The button to open modal -->
                 </td>
               </tr>
             </tbody>
@@ -86,20 +123,3 @@
     </template>
   </NuxtLayout>
 </template>
-
-<script setup>
-useHead({
-  title: "Reservation | Sri Dharmaloka College",
-});
-const Headtitle = ["Book Name", "Reserver", "Reserve Date", "Due Date", "Info"];
-
-const isModalVisible = useRightModalVisible();
-const isContainerVisible = useRightModalContainerVisible();
-
-function show() {
-  isModalVisible.value = true;
-  isContainerVisible.value = true;
-}
-
-const columns = ["Id", "Name", "Mobile", "Joined At", "Action"];
-</script>

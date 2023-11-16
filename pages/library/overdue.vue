@@ -20,75 +20,10 @@
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="Headtitle" />
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>10253</td>
-                <td>Famous Five Part 1</td>
-                <td>doe doe</td>
-                <td>2023/10/25</td>
-                <td>
-                  <!-- Assuming PrimaryIconButton is properly defined -->
-                  <PrimaryIconButton
-                    icon="material-symbols:check-circle-outline"
-                    colors="bg-green-700 text-white"
-                    onclick="my_modal_1.showModal()"
-                  />
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_2.showModal()"
-                  />
-                  <PrimaryIconButton
-                    icon="ic:baseline-block"
-                    colors="bg-red-700 text-white"
-                    onclick="my_modal_3.showModal()"
-                  />
-                </td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>10253</td>
-                <td>Famous Five Part 1</td>
-                <td>doe doe</td>
-                <td>2023/10/25</td>
-                <td>
-                  <!-- Assuming PrimaryIconButton is properly defined -->
-                  <PrimaryIconButton
-                    icon="material-symbols:check-circle-outline"
-                    colors="bg-green-700 text-white"
-                    onclick="my_modal_1.showModal()"
-                  />
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_2.showModal()"
-                  />
-                  <PrimaryIconButton
-                    icon="ic:baseline-block"
-                    colors="bg-red-700 text-white"
-                    onclick="my_modal_3.showModal()"
-                  />
-                </td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>10253</td>
-                <td>Famous Five Part 1</td>
-                <td>doe doe</td>
-                <td>2023/10/25</td>
-                <td>
-                  <!-- Assuming PrimaryIconButton is properly defined -->
-                  <PrimaryIconButton
-                    icon="material-symbols:check-circle-outline"
-                    colors="bg-green-700 text-white"
-                    onclick="my_modal_1.showModal()"
-                  />
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_2.showModal()"
-                  />
-                  <PrimaryIconButton
-                    icon="ic:baseline-block"
-                    colors="bg-red-700 text-white"
-                    onclick="my_modal_3.showModal()"
-                  />
-                </td>
-              </tr>
+              <AppTableEmpty
+                columns="5"
+                message="There Is No Any Overdue Holdings 😊"
+              />
             </tbody>
           </table>
         </div>
