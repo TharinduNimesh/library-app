@@ -85,7 +85,7 @@
       <FormAddReservation />
     </template>
   </NuxtLayout>
-</template >
+</template>
 
 <script setup>
 useHead({

@@ -14,20 +14,6 @@ function show() {
   isModalVisible.value = true;
   isContainerVisible.value = true;
 }
-const positions = [
-  {
-    value: 1,
-    label: "Student",
-  },
-  {
-    value: 2,
-    label: "Teacher",
-  },
-  {
-    value: 3,
-    label: "Non-academic staff",
-  },
-];
 
 const {
   pending: isLoading,
@@ -37,6 +23,28 @@ const {
   lazy: false,
   watch: false,
 });
+
+const issues = ref([]);
+watch(data, (newData) => {
+  issues.value = newData.issues.map((issue) => {
+    return {
+      value: issue.id,
+      label: issue.title,
+    };
+  });
+});
+
+const form = {
+  serial_no: "",
+  issue_id: "",
+};
+
+async function addHolding() {
+  const { data: addData, error: addError } = await useApiFetch("/holdings/new", {
+    method: "POST",
+    body: form,
+  });
+}
 </script>
 
 <template>
@@ -67,31 +75,37 @@ const {
               <input type="checkbox" id="my_modal_5" class="modal-toggle" />
               <div class="modal">
                 <div class="modal-box bg-white">
-                  <form class="w-full flex flex-col gap-5">
-                    <h3 class="font-bold text-lg uppercase">Add holding</h3>
+                  <form
+                    class="w-full flex flex-col gap-5"
+                    @submit.prevent="addHolding"
+                  >
+                    <h3 class="font-bold text-2xl uppercase text-gray-800">
+                      Add holding
+                    </h3>
                     <PrimaryIconInput
                       label="Serial no"
                       type="text"
                       icon="material-symbols:book-2-outline-rounded"
                       placeholder="enter Serial no"
+                      v-model="form.serial_no"
                     />
                     <PrimaryIconSelect
                       label="Issue"
                       placeholder="select the Issue"
-                      :options="positions"
+                      :options="issues"
                       icon="solar:posts-carousel-horizontal-line-duotone"
+                      v-model="form.issue_id"
                     />
+                    <div class="modal-action mt-40">
+                      <label
+                        for="my_modal_5"
+                        type="button"
+                        class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+                        >Close</label
+                      >
+                      <button class="btn btn-neutral">Submit</button>
+                    </div>
                   </form>
-                  <div class="modal-action mt-40">
-                    <label for="my_modal_5" class="btn btn-neutral"
-                      >Submit</label
-                    >
-                    <label
-                      for="my_modal_5"
-                      class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
-                      >Close</label
-                    >
-                  </div>
                 </div>
               </div>
             </div>
