@@ -14,6 +14,7 @@
           v-model="searched"
           :placeholder="placeholder"
           @input="filter"
+          @focusout="checkValue($event)"
         />
         <div
           class="flex flex-col w-full absolute mt-11 rounded-md bg-gray-200 p-2 gap-y-1 border border-gray-500 z-50"
@@ -65,6 +66,11 @@ export default {
       this.searched = event.target.innerHTML;
 
       this.$emit("update:modelValue", this.selected);
+    },
+    checkValue(event) {
+      if (this.selected == 0) {
+        this.$emit("update:modelValue", event.target.value);
+      }
     },
   },
 };

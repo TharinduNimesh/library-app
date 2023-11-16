@@ -87,7 +87,6 @@ async function login() {
     navigateTo("/library/dashboard");
   } else {
     const errors = error?.value?.data?.message;
-    console.log(errors);
     if (Array.isArray(errors)) {
       display_errors.value = errors;
     } else {

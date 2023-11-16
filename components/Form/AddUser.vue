@@ -128,6 +128,7 @@ async function addUser() {
     useCookie("access-token").value = data.value?.access_token;
   }
   loading.value = false;
+  reset();
 }
 
 function reset() {

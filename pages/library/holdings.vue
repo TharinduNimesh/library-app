@@ -1,3 +1,44 @@
+<script setup>
+useHead({
+  title: "Holdings | Sri Dharmaloka College",
+});
+
+const availableHead = ["Title", "Copies", "Available", "action"];
+const removedHead = ["Book ID", "Title", "Removed AT", "More"];
+const TableModal = ["Serial no", "Reserved", "status"];
+
+const isModalVisible = useRightModalVisible();
+const isContainerVisible = useRightModalContainerVisible();
+
+function show() {
+  isModalVisible.value = true;
+  isContainerVisible.value = true;
+}
+const positions = [
+  {
+    value: 1,
+    label: "Student",
+  },
+  {
+    value: 2,
+    label: "Teacher",
+  },
+  {
+    value: 3,
+    label: "Non-academic staff",
+  },
+];
+
+const {
+  pending: isLoading,
+  data,
+  refresh,
+} = useApiFetch("/issues", {
+  lazy: false,
+  watch: false,
+});
+</script>
+
 <template>
   <NuxtLayout name="app">
     <div class="grid grid-cols-1 space-y-5">
@@ -39,7 +80,6 @@
                       placeholder="select the Issue"
                       :options="positions"
                       icon="solar:posts-carousel-horizontal-line-duotone"
-                      v-model="position"
                     />
                   </form>
                   <div class="modal-action mt-40">
@@ -64,24 +104,32 @@
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="availableHead" />
             <tbody>
-              <tr
-                v-for="(row, index) in 5"
-                :key="index"
-                class="bg-white border-b hover:bg-gray-50"
-              >
-                <td class="flex flex-col">
-                  <p>sherlock holmes</p>
-                  <p class="text-gray-400">Kumarathunga Munidasa</p>
-                </td>
-                <td>8 COPIES</td>
-                <td>3 AVAILABLE</td>
-                <td>
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_1.showModal()"
-                  />
-                </td>
-              </tr>
+              <AppTableLoading count="4" v-if="isLoading || data == null" />
+              <AppTableEmpty
+                v-else-if="data.issues?.length === 0 && !isLoading"
+                columns="4"
+                message="Can't Find Any Holdings 😕"
+              />
+              <template v-else-if="data.issues?.length > 0 && !isLoading">
+                <tr
+                  v-for="issue in data.issues"
+                  :key="issue.id"
+                  class="bg-white border-b hover:bg-gray-50"
+                >
+                  <td class="flex flex-col">
+                    <p>{{ issue.title }}</p>
+                    <p class="text-gray-400">{{ issue.author }}</p>
+                  </td>
+                  <td>COPIES - {{ issue.copies }}</td>
+                  <td>AVAILABLE - {{ issue.available }}</td>
+                  <td>
+                    <PrimaryIconButton
+                      icon="material-symbols:info-outline"
+                      onclick="my_modal_1.showModal()"
+                    />
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -138,24 +186,40 @@
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="removedHead" />
             <tbody>
-              <tr
-                v-for="(row, index) in 5"
-                :key="index"
-                class="bg-white border-b hover:bg-gray-50"
+              <AppTableLoading count="4" v-if="isLoading || data == null" />
+              <AppTableEmpty
+                v-else-if="data.removedHoldings?.length === 0 && !isLoading"
+                columns="4"
+                message="Can't Find Any Removed Holdings 😕"
+              />
+              <template
+                v-else-if="data.removedHoldings?.length > 0 && !isLoading"
               >
-                <td>1024</td>
-                <td class="flex flex-col">
-                  <p>sherlock holmes</p>
-                  <p class="text-gray-400">Kumarathunga Munidasa</p>
-                </td>
-                <td>2023/12/12</td>
-                <td>
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_2.showModal()"
-                  />
-                </td>
-              </tr>
+                <tr
+                  v-for="holding in data.removedHoldings"
+                  :key="holding.id"
+                  class="bg-white border-b hover:bg-gray-50"
+                >
+                  <td>{{ holding.Holding.serial_no }}</td>
+                  <td class="flex flex-col">
+                    <p>{{ holding.Holding.Issue.title }}</p>
+                    <p class="text-gray-400">
+                      {{ holding.Holding.Issue.Author.name }}
+                    </p>
+                  </td>
+                  <td>
+                    {{
+                      new Date(holding.removed_at).toISOString().split("T")[0]
+                    }}
+                  </td>
+                  <td>
+                    <PrimaryIconButton
+                      icon="material-symbols:info-outline"
+                      onclick="my_modal_1.showModal()"
+                    />
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -241,35 +305,3 @@
     </template>
   </NuxtLayout>
 </template>
-
-<script setup>
-useHead({
-  title: "Holdings | Sri Dharmaloka College",
-});
-
-const availableHead = ["Title", "Copies", "Available", "action"];
-const removedHead = ["Book ID", "Title", "Removed AT", "More"];
-const TableModal = ["Serial no", "Reserved", "status"];
-
-const isModalVisible = useRightModalVisible();
-const isContainerVisible = useRightModalContainerVisible();
-
-function show() {
-  isModalVisible.value = true;
-  isContainerVisible.value = true;
-}
-const positions = [
-  {
-    value: 1,
-    label: "Student",
-  },
-  {
-    value: 2,
-    label: "Teacher",
-  },
-  {
-    value: 3,
-    label: "Non-academic staff",
-  },
-];
-</script>

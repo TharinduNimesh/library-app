@@ -1,3 +1,43 @@
+<script setup>
+useHead({
+  title: "Users | Sri Dharmaloka College",
+});
+
+const isModalVisible = useRightModalVisible();
+const isContainerVisible = useRightModalContainerVisible();
+
+function show() {
+  isModalVisible.value = true;
+  isContainerVisible.value = true;
+}
+
+const columns = ["Id", "Name", "Mobile", "Joined At", "Action"];
+const TableModal = ["Serial no", "Took", "gave"];
+const role = [
+  {
+    value: 1,
+    label: "Student",
+  },
+  {
+    value: 2,
+    label: "Teacher",
+  },
+  {
+    value: 3,
+    label: "Non-Academic Staff",
+  },
+];
+
+const {
+  pending,
+  data: members,
+  refresh,
+} = useApiFetch("/members", {
+  lazy: false,
+  watch: false,
+});
+</script>
+
 <template>
   <NuxtLayout name="app">
     <div class="grid grid-cols-1 space-y-5">
@@ -23,38 +63,43 @@
             </div>
           </div>
           <div class="flex items-center my-4 px-5">
-            <PrimaryFilter placeholder="EX: JOHN DOE" />
+            <PrimaryFilter placeholder="EX: JOHN DOE" :reset="refresh" />
           </div>
         </div>
         <div class="overflow-x-auto rounded-b-lg px-5">
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="columns" />
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-                <td>
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_1.showModal()"
-                  />
-                  <!-- The button to open modal -->
-                </td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-                <td>
-                  <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_1.showModal()"
-                  />
-                </td>
-              </tr>
+              <AppTableLoading :count="5" v-if="pending" />
+              <AppTableEmpty
+                v-if="members?.members.length === 0 && !pending"
+                :columns="columns.length"
+                message="No Members found !!! 🙄"
+              />
+              <template v-if="members?.members.length > 0 && !pending">
+                <tr
+                  v-for="member in members?.members"
+                  :key="member.id"
+                  class="bg-white border-b hover:bg-gray-50"
+                >
+                  <td>{{ member.registration_no }}</td>
+                  <td>
+                    <p>{{ member.name }}</p>
+                    <span class="text-sm font-semibold text-gray-500"
+                      >Student</span
+                    >
+                  </td>
+                  <td>{{ member.mobile }}</td>
+                  <td>{{ new Date(member.joined_at).toISOString().split('T')[0] }}</td>
+                  <td>
+                    <PrimaryIconButton
+                      icon="material-symbols:info-outline"
+                      onclick="my_modal_1.showModal()"
+                    />
+                    <!-- The button to open modal -->
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -116,20 +161,3 @@
     </template>
   </NuxtLayout>
 </template>
-
-<script setup>
-useHead({
-  title: "Users | Sri Dharmaloka College",
-});
-
-const isModalVisible = useRightModalVisible();
-const isContainerVisible = useRightModalContainerVisible();
-
-function show() {
-  isModalVisible.value = true;
-  isContainerVisible.value = true;
-}
-
-const columns = ["Id", "Name", "Mobile", "Joined At", "Action"];
-const TableModal = ["Serial no", "Took", "gave"];
-</script>

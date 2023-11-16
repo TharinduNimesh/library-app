@@ -19,9 +19,8 @@ export function useApiFetch<T>(
 
   const url = process.env.API_URL || "http://localhost:8080";
 
-  return useLazyFetch(url + path, {
-    watch: false,
-    lazy: false,
+  return useFetch(url + path, {
+    server: false,
     ...options,
     headers: {
       ...headers,
