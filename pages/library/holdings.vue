@@ -196,7 +196,7 @@ async function addHolding() {
             <!--  -->
           </div>
           <div class="flex items-center my-4 px-5">
-            <PrimaryFilter placeholder="EX: sherlock holmes" />
+            <PrimaryFilter placeholder="EX: sherlock holmes" :reset="refresh" />
           </div>
         </div>
         <div class="overflow-x-auto rounded-b-lg px-5">

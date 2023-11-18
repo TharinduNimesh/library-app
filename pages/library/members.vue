@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  title: "Users | Sri Dharmaloka College",
+  title: "Members | Sri Dharmaloka College",
 });
 
 const isModalVisible = useRightModalVisible();
@@ -11,8 +11,33 @@ function show() {
   isContainerVisible.value = true;
 }
 
+function moreInfo(member) {
+  member = toRaw(member);
+  info.value.name = member.name;
+  info.value.index = member.registration_no || member.nic;
+  info.value.mobile = member.mobile;
+  info.value.position = member.position;
+  info.value.grade = member.grade;
+  info.value.class = member.class;
+  info.value.role = role[member.position - 1].label;
+  info.value.reservations = member.reservations;
+
+  document.getElementById("member_modal").showModal();
+}
+
+const info = ref({
+  name: "",
+  index: "",
+  mobile: "",
+  position: "",
+  grade: "",
+  class: "",
+  role: "",
+  reservations: [],
+});
+
 const columns = ["Id", "Name", "Mobile", "Joined At", "Action"];
-const TableModal = ["Serial no", "Took", "gave"];
+const TableModal = ["HOLDING", "Reserved At", "due date", "is returned"];
 const role = [
   {
     value: 1,
@@ -90,11 +115,13 @@ const {
                     >
                   </td>
                   <td>{{ member.mobile }}</td>
-                  <td>{{ new Date(member.joined_at).toISOString().split('T')[0] }}</td>
+                  <td>
+                    {{ new Date(member.joined_at).toISOString().split("T")[0] }}
+                  </td>
                   <td>
                     <PrimaryIconButton
                       icon="material-symbols:info-outline"
-                      onclick="my_modal_1.showModal()"
+                      @click="moreInfo(member)"
                     />
                     <!-- The button to open modal -->
                   </td>
@@ -107,49 +134,90 @@ const {
     </div>
 
     <!-- Table Modal Start -->
-    <dialog id="my_modal_1" class="modal">
+    <dialog id="member_modal" class="modal">
       <div class="modal-box bg-white w-11/12 max-w-5xl uppercase">
-        <h3 class="font-bold text-lg mb-5">Info !</h3>
+        <h3 class="font-bold text-lg mb-5 uppercase text-gray-700">
+          More Informations
+        </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div class="col-span-2 sm:col-span-1">
-            <PrimaryDisableInput label="Name" placeholder="Your Name Here" />
+          <div class="md:col-span-1 col-span-2">
+            <PrimaryDisableInput label="Name" :placeholder="info.name" />
           </div>
-          <div class="col-span-2 sm:col-span-1">
-            <PrimaryDisableInput
-              label="index/nic"
-              placeholder="Your index/nic Here"
-            />
+          <div class="md:col-span-1 col-span-2">
+            <PrimaryDisableInput label="index/nic" :placeholder="info.index" />
           </div>
-          <div class="col-span-2 sm:col-span-1">
-            <PrimaryDisableInput
-              label="mobile"
-              placeholder="Your mobile Here"
-            />
+          <div class="md:col-span-1 col-span-2">
+            <PrimaryDisableInput label="mobile" :placeholder="info.mobile" />
           </div>
-          <div class="col-span-2 sm:col-span-1">
-            <PrimaryDisableInput label="role" placeholder="Your role Here" />
-          </div>
+          <template v-if="info.position">
+            <div class="md:col-span-1 col-span-2">
+              <PrimaryDisableInput
+                label="position"
+                :placeholder="role[info.position - 1].label"
+              />
+            </div>
+            <template v-if="info.position === 1 || info.position === 2">
+              <div class="md:col-span-1 col-span-2">
+                <PrimaryDisableInput label="Grade" :placeholder="info.grade" />
+              </div>
+              <div class="md:col-span-1 col-span-2">
+                <PrimaryDisableInput label="class" :placeholder="info.class" />
+              </div>
+            </template>
+            <div class="col-span-2" v-else-if="info.position === 3">
+              <PrimaryDisableInput label="Role" :placeholder="info.role" />
+            </div>
+          </template>
         </div>
         <div class="overflow-x-auto rounded-b-lg mt-5">
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="TableModal" />
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-              </tr>
+              <AppTableEmpty
+                :columns="TableModal.length"
+                v-if="info.reservations.length === 0"
+                message="This Member Haven't Any Reservation History !!! 😕"
+              />
+              <template v-else>
+                <tr
+                  v-for="reservation in info.reservations"
+                  :key="reservation.id"
+                  class="bg-white border-b hover:bg-gray-50"
+                >
+                  <td>
+                    <p>
+                      {{ reservation.Holding.id }} -
+                      {{ reservation.Holding.Issue.title }}
+                    </p>
+                    <span class="text-sm font-semibold text-gray-500">
+                      {{ reservation.Holding.Issue.Author.name }}
+                    </span>
+                  </td>
+                  <td>
+                    {{
+                      new Date(reservation.reserved_at)
+                        .toISOString()
+                        .split("T")[0]
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      new Date(reservation.due_date).toISOString().split("T")[0]
+                    }}
+                  </td>
+                  <td v-if="reservation.is_recieved" class="text-sm font-semibold text-green-500">
+                    Returned
+                  </td>
+                  <td v-else class="text-sm font-semibold text-red-500">
+                    Not Returned
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
         <div class="modal-action">
           <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
             <button class="btn">Close</button>
           </form>
         </div>

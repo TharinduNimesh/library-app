@@ -7,7 +7,7 @@ const routes = [
   {
     name: "Memebers",
     icon: "material-symbols:person-pin",
-    path: "/library/memebers",
+    path: "/library/members",
   },
   {
     name: "Holdings",

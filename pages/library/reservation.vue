@@ -12,7 +12,7 @@ function show() {
   isContainerVisible.value = true;
 }
 
-const { pending: isLoading, data: reservations } = useApiFetch("/reservation", {
+const { pending: isLoading, data: reservations, refresh } = useApiFetch("/reservation", {
   lazy: false,
   watch: false,
 });
@@ -37,7 +37,7 @@ const { pending: isLoading, data: reservations } = useApiFetch("/reservation", {
             </div>
           </div>
           <div class="flex items-center my-4 px-5">
-            <PrimaryFilter placeholder="EX: sherlock holmes" />
+            <PrimaryFilter placeholder="EX: sherlock holmes" :reset="refresh" />
           </div>
         </div>
 
