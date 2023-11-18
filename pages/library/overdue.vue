@@ -1,3 +1,20 @@
+<script setup>
+useHead({
+  title: "Overdue | Sri Dharmaloka College",
+});
+const Headtitle = ["Holding", "reserver", "Reserved At", "due date", "Action"];
+const TableModal = ["Serial no", "Reserved", "status"];
+
+const {
+  pending: isLoading,
+  data: overdues,
+  refresh,
+} = useApiFetch("/reservation/overdue", {
+  lazy: false,
+  watch: false,
+});
+</script>
+
 <template>
   <NuxtLayout name="app">
     <div class="grid grid-cols-1 space-y-5">
@@ -10,7 +27,7 @@
             overdue books
           </h2>
           <div class="flex items-center my-4 px-5 pt-1">
-            <PrimaryFilter placeholder="EX: sherlock holmes" />
+            <PrimaryFilter placeholder="EX: sherlock holmes" :reset="refresh" />
           </div>
         </div>
         <!-- Buttons End -->
@@ -20,10 +37,59 @@
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="Headtitle" />
             <tbody>
+              <AppTableLoading count="5" v-if="isLoading" />
               <AppTableEmpty
+                v-else-if="
+                  !isLoading && overdues.overdueReservations?.length === 0
+                "
                 columns="5"
-                message="There Is No Any Overdue Holdings 😊"
+                message="There Are No Any Overdue Holdings 😊"
               />
+              <tr
+                v-else-if="
+                  !isLoading && overdues.overdueReservations?.length > 0
+                "
+                v-for="overdue in overdues?.overdueReservations"
+                :key="overdue.id"
+                class="bg-white border-b hover:bg-gray-50"
+              >
+                <td>
+                  <p>{{ overdue.holding_id }} - {{ overdue.title }}</p>
+                  <span class="text-sm font-semibold text-gray-500">
+                    {{ overdue.author }}
+                  </span>
+                </td>
+                <td v-if="overdue.role == 1 || overdue.role == 2">
+                  <p>
+                    {{ overdue.reserver.name }}
+                  </p>
+                  <span class="text-sm font-semibold text-gray-500">
+                    {{ overdue.reserver.grade }} -
+                    {{ overdue.reserver.class }}
+                  </span>
+                </td>
+                <td v-else>
+                  <p>
+                    {{ overdue.reserver.name }}
+                  </p>
+                  <span class="text-sm font-semibold text-gray-500">
+                    NON-ACADEMIC
+                  </span>
+                </td>
+                <td>
+                  {{ new Date(overdue.reserved_at).toISOString().split("T")[0] }}
+                </td>
+                <td>
+                  {{ new Date(overdue.due_date).toISOString().split("T")[0] }}
+                </td>
+                <td>
+                  <PrimaryIconButton
+                    icon="material-symbols:info-outline"
+                    onclick="my_modal_1.showModal()"
+                  />
+                  <!-- The button to open modal -->
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -118,11 +184,3 @@
     <!-- Modal End -->
   </NuxtLayout>
 </template>
-
-<script setup>
-useHead({
-  title: "Overdue | Sri Dharmaloka College",
-});
-const Headtitle = ["Book id", "title", "reserver", "due date", "Action"];
-const TableModal = ["Serial no", "Reserved", "status"];
-</script>

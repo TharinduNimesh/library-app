@@ -59,14 +59,30 @@ const { pending: isLoading, data: reservations } = useApiFetch("/reservation", {
               >
                 <td>
                   <p>
-                    {{ reservation.Holding.serial_no }} -
-                    {{ reservation.Holding.Issue.title }}
+                    {{ reservation.holding_id }} -
+                    {{ reservation.title }}
                   </p>
                   <span class="text-sm font-semibold text-gray-500">
-                    {{ reservation.Holding.Issue.Author.name }}
+                    {{ reservation.author }}
                   </span>
                 </td>
-                <td>Tharindu Nimesh</td>
+                <td v-if="reservation.role == 1 || reservation.role == 2">
+                  <p>
+                    {{ reservation.reserver.name }}
+                  </p>
+                  <span class="text-sm font-semibold text-gray-500">
+                    {{ reservation.reserver.grade }} -
+                    {{ reservation.reserver.class }}
+                  </span>
+                </td>
+                <td v-else>
+                  <p>
+                    {{ reservation.reserver.name }}
+                  </p>
+                  <span class="text-sm font-semibold text-gray-500">
+                    NON-ACADEMIC
+                  </span>
+                </td>
                 <td>
                   {{
                     new Date(reservation.reserved_at)
@@ -76,9 +92,7 @@ const { pending: isLoading, data: reservations } = useApiFetch("/reservation", {
                 </td>
                 <td>
                   {{
-                    new Date(reservation.due_date)
-                      .toISOString()
-                      .split("T")[0]
+                    new Date(reservation.due_date).toISOString().split("T")[0]
                   }}
                 </td>
                 <td>
