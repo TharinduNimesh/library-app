@@ -4,7 +4,7 @@ useHead({
 });
 
 const availableHead = ["Title", "Copies", "Available", "action"];
-const removedHead = ["Book ID", "Title", "Removed AT", "More"];
+const removedHead = ["Serial no", "Title", "Removed AT", "More"];
 const TableModal = ["Serial no", "Reserved", "status"];
 
 const isModalVisible = useRightModalVisible();
@@ -13,6 +13,52 @@ const isContainerVisible = useRightModalContainerVisible();
 function show() {
   isModalVisible.value = true;
   isContainerVisible.value = true;
+}
+
+const availableDetails = ref({
+  title: "",
+  author: "",
+  copies: "",
+  available: "",
+  holdings: [],
+});
+
+const removedDetails = ref({
+  removed_by: "",
+  removed_at: "",
+  reason: "",
+});
+
+function availableInfo(info) {
+  info = toRaw(info);
+  availableDetails.value.title = info.title;
+  availableDetails.value.author = info.author;
+  availableDetails.value.copies = info.copies;
+  availableDetails.value.available = info.available;
+  availableDetails.value.holdings = info.holdings;
+
+  document.getElementById("available_info").showModal();
+}
+
+function removedInfo(info) {
+  info = toRaw(info);
+
+  removedDetails.value.removed_by = info.User.name;
+  removedDetails.value.removed_at = new Date(info.removed_at)
+    .toISOString()
+    .split("T")[0];
+  removedDetails.value.reason = info.reason;
+
+  document.getElementById("removed_modal").showModal();
+}
+
+function isAvailable(reservations) {
+  reservations.map((reservation) => {
+    if (reservation.is_received == 0) {
+      return '<span class="uppercase text-red-500 text-sm font-semibold">No Available</span>';
+    }
+  });
+  return '<span class="uppercase text-green-500 text-sm font-semibold">Available</span>';
 }
 
 const {
@@ -142,7 +188,7 @@ async function addHolding() {
                   <td>
                     <PrimaryIconButton
                       icon="material-symbols:info-outline"
-                      onclick="my_modal_1.showModal()"
+                      @click="availableInfo(issue)"
                     />
                   </td>
                 </tr>
@@ -160,40 +206,11 @@ async function addHolding() {
               Removed Holdings
             </h2>
             <div class="flex justify-end px-5 gap-2">
-              <label for="my_modal_6" class="btn"
+              <label for="quick_remove_modal" class="btn"
                 ><Icon class="text-lg" name="material-symbols:delete-outline" />
                 <span class="hidden sm:inline">quick remove</span>
               </label>
             </div>
-
-            <!-- Put this part before </body> tag -->
-            <input type="checkbox" id="my_modal_6" class="modal-toggle" />
-            <div class="modal">
-              <div class="modal-box bg-white">
-                <form class="w-full flex flex-col gap-5">
-                  <PrimaryIconInput
-                    label="Serial no"
-                    type="text"
-                    icon="mdi:account-outline"
-                    placeholder="Enter Serial no"
-                  />
-                  <PrimaryTextarea
-                    label="Reason"
-                    type="text"
-                    placeholder="Write a reason for removing this book"
-                  />
-                </form>
-                <div class="modal-action">
-                  <label for="my_modal_6" class="btn btn-neutral">Submit</label>
-                  <label
-                    for="my_modal_6"
-                    class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
-                    >Close</label
-                  >
-                </div>
-              </div>
-            </div>
-            <!--  -->
           </div>
           <div class="flex items-center my-4 px-5">
             <PrimaryFilter placeholder="EX: sherlock holmes" :reset="refresh" />
@@ -232,7 +249,7 @@ async function addHolding() {
                   <td>
                     <PrimaryIconButton
                       icon="material-symbols:info-outline"
-                      onclick="my_modal_1.showModal()"
+                      @click="removedInfo(holding)"
                     />
                   </td>
                 </tr>
@@ -243,25 +260,28 @@ async function addHolding() {
       </div>
     </div>
 
-    <dialog id="my_modal_2" class="modal">
+    <dialog id="removed_modal" class="modal">
       <div class="modal-box bg-white uppercase p-6">
-        <h3 class="font-bold text-lg mb-5">Info !</h3>
+        <h3 class="font-bold text-lg mb-5 uppercase text-gray-700">More Information</h3>
 
         <div class="grid grid-cols-2 gap-4">
-          <div class="col-span-2">
+          <div class="col-span-2 md:col-span-1">
             <PrimaryDisableInput
               label="Removed by"
-              placeholder="removed by here"
+              :placeholder="removedDetails.removed_by"
             />
           </div>
-          <div class="col-span-2">
+          <div class="col-span-2 md:col-span-1">
             <PrimaryDisableInput
               label="Removed At"
-              placeholder="Removed At Here"
+              :placeholder="removedDetails.removed_at"
             />
           </div>
           <div class="col-span-2">
-            <PrimaryDisableTextarea label="Reason" placeholder="Reason Here" />
+            <PrimaryDisableTextarea
+              label="Reason"
+              :placeholder="removedDetails.reason"
+            />
           </div>
         </div>
         <div class="modal-action mt-14">
@@ -274,37 +294,61 @@ async function addHolding() {
     </dialog>
 
     <!-- Available Table Modal Start -->
-    <dialog id="my_modal_1" class="modal">
+    <dialog id="available_info" class="modal">
       <div class="modal-box bg-white w-11/12 max-w-5xl uppercase">
-        <h3 class="font-bold text-lg mb-5">Info !</h3>
+        <h3 class="font-bold text-lg mb-5 uppercase text-gray-700">
+          More Information
+        </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div class="col-span-2 sm:col-span-1">
-            <PrimaryDisableInput label="Title" placeholder="Book Title Here" />
-          </div>
-          <div class="col-span-2 sm:col-span-1">
+          <div class="col-span-2 md:col-span-1">
             <PrimaryDisableInput
-              label="Author"
-              placeholder="Author Name Here"
+              label="Title"
+              :placeholder="availableDetails.title"
             />
           </div>
-          <div class="col-span-2 sm:col-span-2">
-            <PrimaryDisableInput label="Copies" placeholder="Copies Here" />
+          <div class="col-span-2 md:col-span-1">
+            <PrimaryDisableInput
+              label="Author"
+              :placeholder="availableDetails.author"
+            />
+          </div>
+          <div class="col-span-2 md:col-span-1">
+            <PrimaryDisableInput
+              label="Copies"
+              :placeholder="availableDetails.copies"
+            />
+          </div>
+          <div class="col-span-2 md:col-span-1">
+            <PrimaryDisableInput
+              label="Available"
+              :placeholder="availableDetails.available"
+            />
           </div>
         </div>
         <div class="overflow-x-auto rounded-b-lg mt-5">
           <table class="w-full text-md text-left text-gray-500 shadow-lg">
             <AppTableHead :columns="TableModal" />
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-              </tr>
-              <tr class="bg-white border-b hover:bg-gray-50">
-                <td>doe</td>
-                <td>doe</td>
-                <td>doe</td>
-              </tr>
+              <AppTableEmpty
+                v-if="availableDetails.holdings.length === 0"
+                :columns="TableModal.length"
+                message="There Are No Holdings Available For This Issue 🧐"
+              />
+              <template v-else>
+                <tr
+                  v-for="holding in availableDetails.holdings"
+                  :key="holding.id"
+                  class="bg-white border-b hover:bg-gray-50"
+                >
+                  <td>{{ holding.serial_no }}</td>
+                  <td>
+                    {{
+                      new Date(holding.reserved_at).toISOString().split("T")[0]
+                    }}
+                  </td>
+                  <td v-html="isAvailable(holding.Reservation)"></td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -317,6 +361,36 @@ async function addHolding() {
       </div>
     </dialog>
     <!-- Table Modal End -->
+
+    <!-- Quick Remove Modal -->
+    <input type="checkbox" id="quick_remove_modal" class="modal-toggle" />
+    <div class="modal">
+      <div class="modal-box bg-white">
+        <form class="w-full flex flex-col gap-5">
+          <PrimaryIconInput
+            label="Serial no"
+            type="text"
+            icon="material-symbols-light:book-5"
+            placeholder="Enter Serial no"
+          />
+          <PrimaryTextarea
+            label="Reason"
+            type="text"
+            placeholder="Write a reason for removing this"
+          />
+        </form>
+        <div class="modal-action">
+          <label
+            for="quick_remove_modal"
+            class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+            >Close</label
+          >
+          <label for="quick_remove_modal" class="btn btn-neutral">Submit</label>
+        </div>
+      </div>
+    </div>
+    <!-- Quick Remove Modal End -->
+
     <template #RightModal>
       <FormAddIssue />
     </template>

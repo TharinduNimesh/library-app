@@ -109,7 +109,6 @@ const { pending: isLoading, data: reservations, refresh } = useApiFetch("/reserv
       </div>
       <!-- Table End -->
 
-      <!-- Modal Start -->
       <!-- Open the modal using ID.showModal() method -->
       <dialog id="my_modal_1" class="modal">
         <div class="modal-box bg-white uppercase">
