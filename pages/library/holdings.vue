@@ -53,12 +53,18 @@ function removedInfo(info) {
 }
 
 function isAvailable(reservations) {
-  reservations.map((reservation) => {
-    if (reservation.is_received == 0) {
-      return '<span class="uppercase text-red-500 text-sm font-semibold">No Available</span>';
+  reservations = toRaw(reservations);
+  let is_received = true;
+  reservations.forEach((reservation) => {
+    if (!reservation.is_received) {
+      is_received = false;
     }
   });
-  return '<span class="uppercase text-green-500 text-sm font-semibold">Available</span>';
+  if (is_received) {
+    return '<span class="uppercase text-green-500 text-sm font-semibold">Available</span>';
+  } else {
+    return '<span class="uppercase text-red-500 text-sm font-semibold">No Available</span>';
+  }
 }
 
 const {

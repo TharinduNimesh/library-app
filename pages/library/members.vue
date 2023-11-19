@@ -205,7 +205,7 @@ const {
                       new Date(reservation.due_date).toISOString().split("T")[0]
                     }}
                   </td>
-                  <td v-if="reservation.is_recieved" class="text-sm font-semibold text-green-500">
+                  <td v-if="reservation.is_received" class="text-sm font-semibold text-green-500">
                     Returned
                   </td>
                   <td v-else class="text-sm font-semibold text-red-500">
