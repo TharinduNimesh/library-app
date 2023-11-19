@@ -100,6 +100,55 @@ async function addHolding() {
     }
   );
 }
+
+const remove_form = {
+  serial_no: "",
+  reason: "",
+};
+
+async function removeHolding() {
+  if (remove_form.serial_no === "") {
+    iziToast.error({
+      title: "Error",
+      message: "Serial no is required",
+    });
+    return;
+  }
+  const { data: removeData, error: removeError } = await useApiFetch(
+    `/holdings/${remove_form.serial_no}`,
+    {
+      method: "DELETE",
+      body: remove_form,
+      lazy: false,
+    }
+  );
+  if (removeError.value) {
+    if(Array.isArray(removeError.value.data.message)) {
+      removeError.value.data.message.forEach((error) => {
+        iziToast.error({
+          title: "Error",
+          message: error.msg,
+        });
+      });
+      return;
+    }
+    iziToast.error({
+      title: "Error",
+      message: removeError.value.data.message,
+    });
+    return;
+  }
+
+  if (removeData.value) {
+    iziToast.success({
+      title: "Success",
+      message: removeData.value.message,
+    });
+    remove_form.serial_no = "";
+    remove_form.reason = "";
+    refresh();
+  }
+}
 </script>
 
 <template>
@@ -268,7 +317,9 @@ async function addHolding() {
 
     <dialog id="removed_modal" class="modal">
       <div class="modal-box bg-white uppercase p-6">
-        <h3 class="font-bold text-lg mb-5 uppercase text-gray-700">More Information</h3>
+        <h3 class="font-bold text-lg mb-5 uppercase text-gray-700">
+          More Information
+        </h3>
 
         <div class="grid grid-cols-2 gap-4">
           <div class="col-span-2 md:col-span-1">
@@ -352,7 +403,12 @@ async function addHolding() {
                       new Date(holding.reserved_at).toISOString().split("T")[0]
                     }}
                   </td>
-                  <td v-html="isAvailable(holding.Reservation)"></td>
+                  <td v-if="holding.is_removed">
+                    <span class="uppercase text-red-500 text-sm font-semibold">
+                      Removed
+                    </span>
+                  </td>
+                  <td v-else v-html="isAvailable(holding.Reservation)"></td>
                 </tr>
               </template>
             </tbody>
@@ -378,20 +434,26 @@ async function addHolding() {
             type="text"
             icon="material-symbols-light:book-5"
             placeholder="Enter Serial no"
+            v-model="remove_form.serial_no"
           />
           <PrimaryTextarea
             label="Reason"
             type="text"
             placeholder="Write a reason for removing this"
+            v-model="remove_form.reason"
           />
         </form>
         <div class="modal-action">
           <label
             for="quick_remove_modal"
+            type="button"
             class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
-            >Close</label
           >
-          <label for="quick_remove_modal" class="btn btn-neutral">Submit</label>
+            Close
+          </label>
+          <button type="button" class="btn btn-neutral" @click="removeHolding">
+            Submit
+          </button>
         </div>
       </div>
     </div>
