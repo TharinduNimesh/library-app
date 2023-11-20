@@ -12,7 +12,38 @@ function show() {
   isContainerVisible.value = true;
 }
 
-const { pending: isLoading, data: reservations, refresh } = useApiFetch("/reservation", {
+const recievedReservation = ref();
+
+function receive(reservation) {
+  document.getElementById("receive_modal").showModal();
+  recievedReservation.value = reservation;
+}
+
+async function confirm() {
+  const { data, error } = await useApiFetch(
+    `/reservation/receive/${recievedReservation.value}`,
+    {
+      method: "PUT",
+    }
+  );
+  if (error.value) {
+    iziToast.error({
+      title: "ERROR",
+      messaage: "Something Went Wrong",
+    });
+    return;
+  }
+  iziToast.success({
+    title: "SUCCESS",
+    message: "Mark As Recieved",
+  });
+}
+
+const {
+  pending: isLoading,
+  data: reservations,
+  refresh,
+} = useApiFetch("/reservation", {
   lazy: false,
   watch: false,
 });
@@ -48,7 +79,9 @@ const { pending: isLoading, data: reservations, refresh } = useApiFetch("/reserv
             <tbody>
               <AppTableLoading count="5" v-if="isLoading" />
               <AppTableEmpty
-                v-else-if="!isLoading && reservations.length === 0"
+                v-else-if="
+                  !isLoading && reservations?.reservations.length === 0
+                "
                 columns="5"
                 message="There Is No Any Reservations 😊"
               />
@@ -97,8 +130,8 @@ const { pending: isLoading, data: reservations, refresh } = useApiFetch("/reserv
                 </td>
                 <td>
                   <PrimaryIconButton
-                    icon="material-symbols:info-outline"
-                    onclick="my_modal_1.showModal()"
+                    icon="material-symbols:fitbit-check-small-rounded"
+                    @click="receive(reservation.id)"
                   />
                   <!-- The button to open modal -->
                 </td>
@@ -110,20 +143,26 @@ const { pending: isLoading, data: reservations, refresh } = useApiFetch("/reserv
       <!-- Table End -->
 
       <!-- Open the modal using ID.showModal() method -->
-      <dialog id="my_modal_1" class="modal">
+      <dialog id="receive_modal" class="modal">
         <div class="modal-box bg-white uppercase">
-          <h3 class="font-bold text-lg mb-5">Hello !</h3>
+          <h3 class="font-bold text-lg mb-5 uppercase text-gray-700">
+            CONFIRMATION
+          </h3>
           <div class="grid">
-            <p class="text-center">Dou you want to mark this</p>
+            <p class="text-center">
+              Dou you want to mark this holding as recieved
+            </p>
           </div>
           <div class="modal-action">
-            <form method="dialog" class="pt-10">
+            <form method="dialog" class="flex pt-10 gap-2">
               <!-- if there is a button in form, it will close the modal -->
-              <button class="btn mr-2">Yes</button>
               <button
                 class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
               >
-                No
+                Cancel
+              </button>
+              <button type="button" class="btn mr-2" @click="confirm">
+                Confirm
               </button>
             </form>
           </div>

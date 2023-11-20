@@ -59,6 +59,7 @@
       </button>
       <button
         class="btn border-red-300 bg-red-300 text-red-800 hover:bg-red-500 hover:text-slate-100 hover:border-red-100"
+        type="button"
         @click="reset"
       >
         <Icon class="text-lg" name="mdi:refresh" />
