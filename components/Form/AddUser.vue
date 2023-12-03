@@ -1,58 +1,70 @@
 <template>
   <form
-    class="w-full flex flex-col py-10 px-8 gap-5"
+    class="w-full flex flex-col py-5 px-8 gap-5"
     :class="{
       'animate-pulse': loading,
     }"
+    @submit.prevent="submit"
   >
     <PrimaryIconInput
       label="Full Name"
       type="text"
       icon="mdi:account-outline"
       placeholder="JOHN DOE"
-      v-model="form.name"
+      v-model="addUserForm.name"
     />
     <PrimaryIconInput
       label="mobile"
       type="text"
       icon="majesticons:phone-dial-line"
       placeholder="071 000 00xx"
-      v-model="form.mobile"
+      v-model="addUserForm.mobile"
     />
-    <!-- <PrimaryIconSelect
+    <PrimaryIconSelect
       label="Position"
       placeholder="select the position"
       :options="positions"
       icon="solar:posts-carousel-horizontal-line-duotone"
-      v-model="form.position"
-    /> -->
-    <PrimaryIconInput
-      label="Registration Number"
-      type="text"
-      icon="material-symbols-light:app-registration-outline-sharp"
-      placeholder="Your index/nic Here"
-      v-model="form.index"
+      v-model="addUserForm.position"
     />
-    <PrimaryIconSelect
-      label="Grade"
-      placeholder="select the Grade"
-      :options="grades"
-      icon="majesticons:academic-cap-line"
-      v-model="form.grade"
-    />
-    <PrimaryIconInput
-      label="Class"
-      type="text"
-      icon="majesticons:home-line"
-      placeholder="B"
-      v-model="form.class"
-    />
+    <template v-if="addUserForm.position != ''">
+      <PrimaryIconInput
+        :label="dynamicInput?.label"
+        type="text"
+        icon="material-symbols-light:app-registration-outline-sharp"
+        :placeholder="dynamicInput?.placeholder"
+        v-model="addUserForm.index"
+      />
+      <template v-if="addUserForm.position == 1 || addUserForm.position == 2">
+        <PrimaryIconSelect
+          label="Grade"
+          placeholder="select the Grade"
+          :options="grades"
+          icon="majesticons:academic-cap-line"
+          v-model="addUserForm.grade"
+        />
+        <PrimaryIconInput
+          label="Class"
+          type="text"
+          icon="majesticons:home-line"
+          placeholder="B"
+          v-model="addUserForm.class"
+        />
+      </template>
+      <PrimaryIconSelect
+        v-if="addUserForm.position == 3"
+        label="Role"
+        placeholder="select the Role"
+        :options="roles"
+        icon="solar:posts-carousel-horizontal-line-duotone"
+        v-model="addUserForm.role"
+      />
+    </template>
     <div class="w-full flex justify-center gap-3">
       <button
         class="btn text-slate-200 disabled:bg-gray-500 disabled:text-gray-800"
-        type="button"
-        @click="addUser"
         :disabled="loading"
+        type="submit"
       >
         <Icon class="text-lg" name="majesticons:send" />
         <span>SUBMIT</span>
@@ -70,6 +82,8 @@
 </template>
 
 <script setup>
+import roles from "~/assets/data/user-roles";
+
 const positions = [
   {
     value: 1,
@@ -95,21 +109,33 @@ for (let i = 1; i < 14; i++) {
 
 const loading = ref(false);
 
-const form = {
+const addUserForm = ref({
   name: "",
   mobile: "",
-  position: 1,
+  position: "",
   index: "",
   grade: "",
   class: "",
-};
+  role: "",
+});
 
-async function addUser() {
+async function submit() {
   loading.value = true;
+  const body = {
+    name: addUserForm.value.name,
+    mobile: addUserForm.value.mobile,
+    position: addUserForm.value.position,
+    index: addUserForm.value.index,
+    grade: addUserForm.value.grade,
+    class: addUserForm.value.class,
+    role: addUserForm.value.role,
+  };
+  
   const { data, error } = await useApiFetch("/members/new", {
     method: "POST",
-    body: form,
+    body,
   });
+
   if (error.value) {
     let errors = error.value.data?.message;
 
@@ -129,15 +155,29 @@ async function addUser() {
     useCookie("access-token").value = data.value?.access_token;
   }
   loading.value = false;
-  reset();
 }
 
+const dynamicInput = computed(() => {
+  if (addUserForm.value.position == 1) {
+    return {
+      label: "Index Number",
+      placeholder: "Your index number Here",
+    };
+  } else if (addUserForm.value.position == 2 || addUserForm.value.position == 3) {
+    return {
+      label: "NIC Number",
+      placeholder: "Your NIC number Here",
+    };
+  }
+});
+
 function reset() {
-  form.name = "";
-  form.mobile = "";
-  form.position = 1;
-  form.index = "";
-  form.grade = "";
-  form.class = "";
+  addUserForm.value.name = "";
+  addUserForm.value.mobile = "";
+  addUserForm.value.position = "";
+  addUserForm.value.index = "";
+  addUserForm.value.grade = "";
+  addUserForm.value.class = "";
+  addUserForm.value.role = "";
 }
 </script>

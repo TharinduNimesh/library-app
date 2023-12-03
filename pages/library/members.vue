@@ -19,7 +19,7 @@ function moreInfo(member) {
   info.value.position = member.position;
   info.value.grade = member.grade;
   info.value.class = member.class;
-  info.value.role = role[member.position - 1].label;
+  info.value.role = member.Staff_Roles?.name || "Unknown";
   info.value.reservations = member.reservations;
 
   document.getElementById("member_modal").showModal();
@@ -52,6 +52,16 @@ const role = [
     label: "Non-Academic Staff",
   },
 ];
+
+function getPosition(member) {
+  if(member.position === 1) {
+    return "Student";
+  } else if(member.position === 2) {
+    return "Teacher";
+  } else if(member.position === 3) {
+    return "Non-Academic Staff";
+  }
+}
 
 const {
   pending,
@@ -107,11 +117,11 @@ const {
                   :key="member.id"
                   class="bg-white border-b hover:bg-gray-50"
                 >
-                  <td>{{ member.registration_no }}</td>
+                  <td>{{ member.index }}</td>
                   <td>
                     <p>{{ member.name }}</p>
                     <span class="text-sm font-semibold text-gray-500"
-                      >Student</span
+                      >{{ getPosition(member) }}</span
                     >
                   </td>
                   <td>{{ member.mobile }}</td>
@@ -205,7 +215,10 @@ const {
                       new Date(reservation.due_date).toISOString().split("T")[0]
                     }}
                   </td>
-                  <td v-if="reservation.is_received" class="text-sm font-semibold text-green-500">
+                  <td
+                    v-if="reservation.is_received"
+                    class="text-sm font-semibold text-green-500"
+                  >
                     Returned
                   </td>
                   <td v-else class="text-sm font-semibold text-red-500">
