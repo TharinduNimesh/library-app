@@ -86,21 +86,6 @@ watch(data, (newData) => {
   });
 });
 
-const form = {
-  serial_no: "",
-  issue_id: "",
-};
-
-async function addHolding() {
-  const { data: addData, error: addError } = await useApiFetch(
-    "/holdings/new",
-    {
-      method: "POST",
-      body: form,
-    }
-  );
-}
-
 const remove_form = {
   serial_no: "",
   reason: "",
@@ -123,7 +108,7 @@ async function removeHolding() {
     }
   );
   if (removeError.value) {
-    if(Array.isArray(removeError.value.data.message)) {
+    if (Array.isArray(removeError.value.data.message)) {
       removeError.value.data.message.forEach((error) => {
         iziToast.error({
           title: "Error",
@@ -163,53 +148,23 @@ async function removeHolding() {
               Available Holdings
             </h2>
             <div class="flex justify-end px-5 gap-2">
-              <button
+              <label
+                for="my_modal_5"
                 class="btn bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
-                @click="show"
               >
                 <Icon class="text-lg" name="mdi:book-plus-outline" />
-                <span class="hidden sm:inline">add issue</span>
-              </button>
-              <label for="my_modal_5" class="btn">
-                <Icon class="text-lg" name="mingcute:add-circle-fill" />
-                <span class="hidden sm:inline">add holding</span>
+                <span class="hidden sm:inline">add an issue</span>
               </label>
+              <button class="btn" @click="show">
+                <Icon class="text-lg" name="mingcute:add-circle-fill" />
+                <span class="hidden sm:inline">add a holding</span>
+              </button>
 
-              <!-- Put this part before </body> tag -->
+              <!-- Add Issue Modal -->
               <input type="checkbox" id="my_modal_5" class="modal-toggle" />
               <div class="modal">
                 <div class="modal-box bg-white">
-                  <form
-                    class="w-full flex flex-col gap-5"
-                    @submit.prevent="addHolding"
-                  >
-                    <h3 class="font-bold text-2xl uppercase text-gray-800">
-                      Add holding
-                    </h3>
-                    <PrimaryIconInput
-                      label="Serial no"
-                      type="text"
-                      icon="material-symbols:book-2-outline-rounded"
-                      placeholder="enter Serial no"
-                      v-model="form.serial_no"
-                    />
-                    <PrimaryIconSelect
-                      label="Issue"
-                      placeholder="select the Issue"
-                      :options="issues"
-                      icon="solar:posts-carousel-horizontal-line-duotone"
-                      v-model="form.issue_id"
-                    />
-                    <div class="modal-action mt-40">
-                      <label
-                        for="my_modal_5"
-                        type="button"
-                        class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
-                        >Close</label
-                      >
-                      <button class="btn btn-neutral">Submit</button>
-                    </div>
-                  </form>
+                  <FormAddIssue />
                 </div>
               </div>
             </div>
@@ -460,7 +415,7 @@ async function removeHolding() {
     <!-- Quick Remove Modal End -->
 
     <template #RightModal>
-      <FormAddIssue />
+      <FormAddHolding :issues="issues" />
     </template>
   </NuxtLayout>
 </template>

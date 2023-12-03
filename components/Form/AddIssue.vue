@@ -1,8 +1,5 @@
 <script setup>
-import category from "~/assets/data/holding-category";
-
 const form = {
-  category: "",
   title: "",
   author: "",
 };
@@ -23,6 +20,7 @@ async function submit() {
       color: "green",
     });
     useCookie("access-token").value = toRaw(data.value).access_token;
+    reset();
   } else if (error.value) {
     if (Array.isArray(error.value.data?.message)) {
       error.value.data.message.forEach((error) => {
@@ -64,23 +62,16 @@ const {
     }));
   },
 });
-
 </script>
 
 <template>
   <form
-    class="w-full flex flex-col py-10 px-8 gap-5"
+    class="w-full flex flex-col gap-5"
     :class="{
       'animate-pulse': pending,
     }"
   >
-    <PrimaryIconSelect
-      label="Catogary"
-      placeholder="select the Catogary"
-      :options="category"
-      icon="ph:stack"
-      v-model="form.category"
-    />
+    <h2 class="text-2xl font-bold text-gray-800 uppercase">Add Issue</h2>
     <PrimaryIconInput
       label="title"
       type="text"
@@ -98,18 +89,15 @@ const {
         'animate-pulse': pending,
       }"
     />
-    <div class="w-full flex justify-center gap-3">
-      <button class="btn text-slate-200" type="button" @click="submit">
-        <Icon class="text-lg" name="majesticons:send" />
-        <span>SUBMIT</span>
-      </button>
-      <button
-        class="btn border-red-300 bg-red-300 text-red-800 hover:bg-red-500 hover:text-slate-100 hover:border-red-100"
-        @click="reset"
+    <div class="modal-action">
+      <label
+        for="my_modal_5"
         type="button"
+        class="btn btn-neutral bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-800 hover:text-slate-200"
+        >Close</label
       >
-        <Icon class="text-lg" name="mdi:refresh" />
-        <span>RESET</span>
+      <button type="button" class="btn btn-neutral" @click="submit">
+        Submit
       </button>
     </div>
   </form>
