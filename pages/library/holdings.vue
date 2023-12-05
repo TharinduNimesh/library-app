@@ -5,7 +5,14 @@ useHead({
 
 const availableHead = ["Title", "Copies", "Available", "action"];
 const removedHead = ["Serial no", "Title", "Removed AT", "More"];
-const TableModal = ["Serial no", "Reserved", "status"];
+const TableModal = [
+  "Serial no",
+  "publisher",
+  "published at",
+  "price",
+  "Reserved",
+  "status",
+];
 
 const isModalVisible = useRightModalVisible();
 const isContainerVisible = useRightModalContainerVisible();
@@ -353,6 +360,9 @@ async function removeHolding() {
                   class="bg-white border-b hover:bg-gray-50"
                 >
                   <td>{{ holding.serial_no }}</td>
+                  <td>{{ holding.publisher }}</td>
+                  <td>{{ holding.published_at }}</td>
+                  <td>LKR. {{ holding.price }}</td>
                   <td>
                     {{
                       new Date(holding.reserved_at).toISOString().split("T")[0]
